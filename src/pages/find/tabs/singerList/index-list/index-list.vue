@@ -1,6 +1,8 @@
 <script setup>
 import { defineProps } from 'vue'
 import useFixed from './use-fixed.js'
+import Singer from '@/components/Singer.vue'
+import { useRouter } from 'vue-router';
 
 const { singers, pending } = defineProps({
   singers: {
@@ -14,34 +16,39 @@ const { singers, pending } = defineProps({
 })
 
 // const { groupRef } = useFixed(props)
+const router = useRouter()
+const gotoDetail = (id) => {
+  console.log(id)
+  router.push({
+    name: 'artist',
+    params: {
+      id
+    },
+  })
+}
+
 </script>
 
 <template>
   <v-lazy transition="fade-transition">
     <v-card
       variant="flat"
-      hover
       class="tw-mt-12"
       ref="groupRef"
     >
       <div 
         v-for="group in singers"
         :key="group.title"
-        
       >
         <h2
-          class="tw-bg-slate-200 tw-text-lg tw-leading-8 tw-pl-4 tw-mb-3 tw-font-medium tw-rounded-2xl"
+          class=" tw-min-h-5 tw-bg-slate-200 tw-text-lg tw-leading-8 tw-pl-4 tw-mb-3 tw-font-medium tw-rounded-2xl"
         >{{ group.title }}</h2>
         <div
           v-for="item in group.list"
           :key="item.id"
-          class="tw-flex tw-justify-start tw-pl-2 tw-mb-3 tw-items-center"
+          @click="gotoDetail(item.id)"
         >
-          <img 
-            :src="item.picUrl" 
-            class="tw-bg-cover tw-object-cover tw-h-14 tw-w-14 tw-rounded-full">
-          <span 
-          class="tw-flex-1 tw-py-0 tw-ml-3 tw-text-sm">{{ item.name }}</span>
+          <Singer :singer="item"></Singer>
         </div>
       </div>
     </v-card>

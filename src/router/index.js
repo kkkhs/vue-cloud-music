@@ -38,7 +38,11 @@ const router = createRouter({
     },{
       path: '/singerList',
       name: 'singerList',
-      component: () => import('@/pages/singerList/singerList.vue')
+      component: () => import('@/pages/find/tabs/singerList/singerList.vue')
+    },{
+      path: '/artist/:id',
+      name: 'artist',
+      component: () => import('@/pages/find/tabs/singerList/singerView/SingerView.vue')
     }
   ]
 })

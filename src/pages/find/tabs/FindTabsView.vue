@@ -6,8 +6,11 @@ const tab = ref(null)
 </script>
 
 <template>
-  <v-card>
+  <v-card
+    variant="flat"
+  >
     <v-tabs
+      :elevation="0"
       v-model="tab"
       class="tw-fixed tw-z-10 tw-bg-white tw-w-full"
     >

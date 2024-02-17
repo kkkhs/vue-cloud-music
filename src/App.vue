@@ -11,8 +11,5 @@
 </script>
 
 <style>
-v-main,
-v-app{
-  overflow: hidden;
-}
+
 </style>
