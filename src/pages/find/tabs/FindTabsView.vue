@@ -7,6 +7,7 @@ const tab = ref(null)
 
 <template>
   <v-card
+    class=" tw-mt-10"
     variant="flat"
   >
     <v-tabs

@@ -5,6 +5,8 @@ import BannerView from './tabs/recommend/BannerView.vue';
 </script>
 
 <template>
-    <HeaderView></HeaderView>
-    <FindTabsView></FindTabsView>
+    <div class=" tw-absolute tw-top-0 tw-left-0 tw-right-0 tw-bottom-14">
+        <HeaderView></HeaderView>
+        <FindTabsView></FindTabsView>
+    </div>
 </template>

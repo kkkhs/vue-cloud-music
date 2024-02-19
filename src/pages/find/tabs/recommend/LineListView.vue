@@ -13,13 +13,12 @@ const GotoRecommendedListPage = () => {
 </script>
 
 <template>
-  <div>
+  <div @touchstart.stop @touchend.stop>
     <div class="tw-mb-2">
       <span class=" tw-text-base tw-font-medium" @click="GotoRecommendedListPage">推荐歌单 &gt;</span>
     </div>
     <v-lazy transition="fade-transition">
       <v-card 
-        v-on:wheel.stop.prevent="$event.stopPropagation()"
         :loading="pending" 
         class="mb-n3" 
         variant="flat"

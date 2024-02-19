@@ -11,7 +11,6 @@ const onClickLeft = () => history.back()
 </script>
 
 <template>
-  <v-layout>
     <v-app-bar class="mx-n2" elevation="0" height="50" >
       <template v-slot:prepend>
         <v-btn icon="mdi-arrow-left" @click="onClickLeft"></v-btn>
@@ -51,6 +50,4 @@ const onClickLeft = () => history.back()
         </v-lazy>
       </div>
     </v-main>
-    
-  </v-layout>
 </template>

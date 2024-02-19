@@ -40,28 +40,29 @@ watch(active, (nv) =>{
 </script>
 
 <template>
-  <router-view/>
-  <v-bottom-navigation 
-    mode="shift"
-    grow
-    v-model="active" 
-    active 
-  >
-    <v-btn 
-      :ripple="false"
-      variant="plain"
-      color="red-darken-1" 
-      v-for="v in tabs"
-      :key="v.value"
-      :value="v.value" 
-      @click="active = v.value"
+    <router-view/>
+    <v-bottom-navigation 
+      style="z-index: 10;"
+      mode="shift"
+      grow
+      v-model="active" 
+      active 
     >
-      <v-icon 
-        aria-hidden="false"
-        size="30"
-        rounded="xl"
-      >{{ v.icon }}</v-icon>
-      <span>{{ v.text }}</span>
-    </v-btn>
-  </v-bottom-navigation>
+      <v-btn 
+        :ripple="false"
+        variant="plain"
+        color="red-darken-1" 
+        v-for="v in tabs"
+        :key="v.value"
+        :value="v.value" 
+        @click="active = v.value"
+      >
+        <v-icon 
+          aria-hidden="false"
+          size="30"
+          rounded="xl"
+        >{{ v.icon }}</v-icon>
+        <span>{{ v.text }}</span>
+      </v-btn>
+    </v-bottom-navigation>
 </template>

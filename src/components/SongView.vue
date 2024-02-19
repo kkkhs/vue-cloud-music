@@ -21,7 +21,7 @@ const selectItem = (song, index) => {
 <template>
   <div 
     class="tw-flex tw-items-center tw-my-4"
-    @click="selectItem(song, index)"
+    @click="selectItem(song, index - 1)"
   >
     <div
       class="tw-w-12 tw-opacity-70 tw-text-center tw-text-lg"

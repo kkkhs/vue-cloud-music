@@ -2,6 +2,8 @@ import { defineStore } from 'pinia';
 import { reactive } from 'vue';
 import { PLAY_MODE } from '@/utils/const';
 import { shuffle } from '@/utils/shuffle';
+import { useAsync } from '@/use/useAsync';
+import { fetchSongUrl } from '@/api/songUrl.js';
 
 export const usePlayStateStore = defineStore('playState', () => {
   const state = reactive({
@@ -57,6 +59,7 @@ export const usePlayStateStore = defineStore('playState', () => {
 
   //当前播放歌曲
   const currentSong = () => {
+    // console.log(state.playList[state.currentIndex])
     return state.playList[state.currentIndex]
   }
 

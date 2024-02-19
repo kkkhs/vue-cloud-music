@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <v-app-bar :elevation="0" height="50">
+  <v-app-bar :elevation="0" height="50" style="z-index: 10;">
       <template v-slot:prepend>
         <v-app-bar-nav-icon></v-app-bar-nav-icon>
       </template>
@@ -15,5 +15,5 @@
 
         <v-btn icon="mdi-dots-vertical"></v-btn>
       </template>
-    </v-app-bar>
+  </v-app-bar>
 </template>

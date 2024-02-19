@@ -30,29 +30,28 @@ const gotoDetail = (id) => {
 </script>
 
 <template>
-  <v-lazy transition="fade-transition">
-    <v-card
-      variant="flat"
-      class="tw-mt-12"
-      ref="groupRef"
-    >
-      <div 
-        v-for="group in singers"
-        :key="group.title"
-      >
-        <h2
-          class=" tw-min-h-5 tw-bg-slate-200 tw-text-lg tw-leading-8 tw-pl-4 tw-mb-3 tw-font-medium tw-rounded-2xl"
-        >{{ group.title }}</h2>
-        <div
-          v-for="item in group.list"
-          :key="item.id"
-          @click="gotoDetail(item.id)"
+  <div class="tw-overflow-scroll tw-mt-12 tw-max-h-[680px]">
+    <v-lazy transition="fade-transition">
+      <div>
+        <div 
+          v-for="group in singers"
+          :key="group.title"
         >
-          <Singer :singer="item"></Singer>
+          <h2
+            class=" tw-min-h-5 tw-bg-slate-200 tw-text-lg tw-leading-8 tw-pl-4 tw-mb-3 tw-font-medium tw-rounded-2xl"
+          >{{ group.title }}</h2>
+          <div
+            v-for="item in group.list"
+            :key="item.id"
+            @click="gotoDetail(item.id)"
+          >
+            <Singer :singer="item"></Singer>
+          </div>
         </div>
       </div>
-    </v-card>
-  </v-lazy>
+    </v-lazy>
+  </div>
+  
 </template>
 
 

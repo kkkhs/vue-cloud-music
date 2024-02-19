@@ -29,7 +29,7 @@ const menus = [
 </script>
 
 <template>
-  <div class="tw-flex tw-h-16 tw-flex-nowrap tw-overflow-x-hiden tw-mb-1">
+  <div class="tw-flex tw-h-16 tw-flex-nowrap tw-overflow-x-hiden tw-mb-1 tw-mt-2">
     <div 
       v-for="item in menus"
       :key="item.id"
