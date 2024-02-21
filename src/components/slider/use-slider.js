@@ -3,6 +3,7 @@ import Slide from '@better-scroll/slide'
 
 import { onMounted, onUnmounted, onActivated, onDeactivated, ref } from 'vue'
 
+//局部注册组件
 BScroll.use(Slide)
 
 export default function useSlider(wrapperRef) {
@@ -20,6 +21,7 @@ export default function useSlider(wrapperRef) {
       slide: true
     })
 
+    // 获得轮播图页码
     sliderVal.on('slideWillChange', (page) => {
       currentPageIndex.value = page.pageX
     })

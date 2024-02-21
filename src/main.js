@@ -12,9 +12,11 @@ import App from './App.vue'
 
 // Composables
 import { createApp } from 'vue'
+import loadingDirective from '@/directive/loading/directive' //引入loading指令
 
 const app = createApp(App)
 
 registerPlugins(app)
 
+app.directive('loading', loadingDirective)
 app.mount('#app')

@@ -9,6 +9,7 @@ const { sliders } = defineProps({
   }
 })
 
+// 根节点ref对象
 const rootRef = ref(null)
 const { currentPageIndex } = useSlider(rootRef)
 

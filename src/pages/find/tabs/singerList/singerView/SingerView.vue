@@ -16,7 +16,7 @@ const onClickLeft = () => history.back()
 
 const selectItem = ({song, index}) => {
   playState.selectPlay(TopSong.value, index)
-  // console.log(playState.state.playList)
+  console.log(playState.state.playList)
 }
 
 const randomPlay = () => {
