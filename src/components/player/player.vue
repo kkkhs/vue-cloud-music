@@ -4,6 +4,7 @@ import { usePlayStateStore } from '@/store/playState.js'
 import { useAsync } from '@/use/useAsync';
 import { fetchSongUrl } from '@/api/songUrl.js';
 import useMode from './use-mode';
+import useFavorite from './use-favorite'
 
 const audioRef = ref(null)
 const songUrl = reactive({})
@@ -18,6 +19,7 @@ const playList = computed(() => playState.state.playList)
 
 // hooks
 const { modeIcon, changeMode } = useMode()
+const { isFavorite, toggleFavorite } = useFavorite()
 
 //根据不同的播放状态返回不同的icon
 const playIcon = computed(() => { 
@@ -174,7 +176,9 @@ const error = () => {
             size="30" v-ripple @click="next" icon="mdi-skip-next" :class="disableCls"
           ></v-icon>
           <v-icon 
+            @click="toggleFavorite(currentSong)"
             class="tw-rounded-full" 
+            :class="{'favorite': isFavorite(currentSong)}"
             size="30" icon="mdi-heart"></v-icon>
         </div>
         </div>
@@ -192,5 +196,9 @@ const error = () => {
 <style>
 .disable {
   color: rgba(255, 255, 255, 0.7);
+}
+
+.favorite {
+  color: rgb(235, 60, 60);
 }
 </style>

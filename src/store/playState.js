@@ -1,7 +1,8 @@
-import { defineStore, setActivePinia } from 'pinia';
+import { defineStore } from 'pinia';
 import { reactive } from 'vue';
-import { PLAY_MODE } from '@/utils/const';
+import { PLAY_MODE, FAVORITE_KEY } from '@/utils/const';
 import { shuffle } from '@/utils/shuffle';
+import { load } from '@/utils/array-store';
 
 export const usePlayStateStore = defineStore('playState', () => {
   const state = reactive({
@@ -11,7 +12,7 @@ export const usePlayStateStore = defineStore('playState', () => {
     playMode: PLAY_MODE.sequence,
     currentIndex: 0,    //当前播放索引
     fullScreen: false,   //是否全屏
-    favoriteList: []  //喜欢列表
+    favoriteList: load(FAVORITE_KEY)  //喜欢列表
   })
 
   //默认播放
