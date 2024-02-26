@@ -38,12 +38,12 @@ const selectItem = (song, index) => {
       </div>
       <div 
         v-if="song.awardName"
-        class="tw-text-orange-600 tw-bg-orange-100 tw-text-[11px] tw-w-fit tw-px-1 tw-leading-5 tw-rounded-sm tw-mt-1"
+        class="tw-text-orange-600 tw-bg-orange-100 tw-text-[11px] tw-w-fit tw-max-w-[263px] tw-px-1 tw-leading-5 tw-rounded-sm tw-mt-1 tw-text-nowrap tw-overflow-hidden"
       >{{ song.awardName }}</div>
     </div>
     <div class="tw-opacity-35">
       <v-icon icon="mdi-play" class="tw-text-lg"></v-icon>
-      <v-icon icon="mdi-dots-vertical" class="tw-mr-3 tw-ml-2"></v-icon>
+      <v-icon icon="mdi-dots-vertical" class="tw-mr-3 tw-ml-3"></v-icon>
     </div>
   </div>
 </template>
