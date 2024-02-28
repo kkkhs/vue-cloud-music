@@ -26,7 +26,7 @@ const tab = ref(null)
           <RecommendView></RecommendView>
         </v-window-item>
 
-        <v-window-item value="two">
+        <v-window-item value="two" width="100%">
           <SingerList></SingerList>
         </v-window-item>
 

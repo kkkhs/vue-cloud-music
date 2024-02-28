@@ -58,11 +58,53 @@ export const usePlayStateStore = defineStore('playState', () => {
     state.playMode = mode
   }
 
+  // 移除歌曲
+  const removeSong = (song) => {
+    const sequenceList = state.sequenceList.slice()
+    const playlist = state.playList.slice()
+
+    const sequenceIndex = findIndex(sequenceList, song)
+    const playIndex = findIndex(playlist, song)
+    if (sequenceIndex < 0 || playIndex < 0) {
+      return
+    }
+    sequenceList.splice(sequenceIndex, 1)
+    playlist.splice(playIndex, 1)
+
+    let currentIndex = state.currentIndex
+    if (playIndex < currentIndex || currentIndex === playlist.length) {
+      currentIndex--
+    }
+
+    state.sequenceList = sequenceList
+    state.playList = playlist
+    state.currentIndex = currentIndex
+    if (!playlist.length) {
+      state.playing = false
+    }
+  }
+
+  //清空歌曲列表
+  const clearSongList = () => {
+    state.sequenceList = []
+    state.playList = []
+    state.currentIndex = 0
+    state.playing = false
+  }
+
+  function findIndex(list, song) {
+    return list.findIndex((item) => {
+      return item.id === song.id
+    })
+  }
+
   return{
     state,
     selectPlay,
     randomPlay,
     currentSong,
-    changeMode
+    changeMode,
+    removeSong,
+    clearSongList 
   }
 })

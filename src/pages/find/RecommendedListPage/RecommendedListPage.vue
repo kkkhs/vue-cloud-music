@@ -35,7 +35,7 @@ const loadingText = '正在载入...'
                 variant="flat"
               >
                 <div
-                  class="tw-flex tw-flex-wrap tw-mb-12"
+                  class="tw-flex tw-flex-wrap tw-mb-14"
                 >
                   <div
                     class="tw-h-50 tw-w-28 tw-flex tw-flex-col tw-mr-2 tw-justify-center tw-pb-5"

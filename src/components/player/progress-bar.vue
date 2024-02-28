@@ -13,9 +13,7 @@ const rootRef = ref(null)
 const progressRef = ref(null)
 
 watch(() => props.progress, (newProgress) => {
-  // 获取整个进度条的宽度
-  const barWidth = rootRef.value.clientWidth
-  offset.value = barWidth * newProgress
+  setOffset(newProgress)
 })
 
 // 进度条样式变化
@@ -57,6 +55,15 @@ const onClick = (e) => {
   const progress = offsetWidth/barWidth
   emit('progress-changed', progress)
 }
+
+const setOffset = (progress) => {
+  // 获取整个进度条的宽度
+  const barWidth = rootRef.value.clientWidth
+  offset.value = barWidth * progress
+}
+
+// 暴露方法!!!
+defineExpose({ setOffset })
 </script>
 
 <template>

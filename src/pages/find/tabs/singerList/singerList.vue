@@ -61,7 +61,7 @@ const { data, pending } = useAsync(() => fetchSingerListData(100).then((v) => {
 </script>
 
 <template>
-  <div>
+  <div class="tw-fixed tw-w-full tw-left-0 tw-top-24 tw-bottom-14">
     <IndexList :singers="data" :pending="pending"></IndexList>
   </div>
 </template>

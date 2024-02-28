@@ -7,9 +7,12 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    MiniPlayer: typeof import('./src/components/player/mini-player.vue')['default']
     MusicList: typeof import('./src/components/MusicList.vue')['default']
     Player: typeof import('./src/components/player/player.vue')['default']
+    Playlist: typeof import('./src/components/player/playlist.vue')['default']
     ProgressBar: typeof import('./src/components/player/progress-bar.vue')['default']
+    ProgressCircle: typeof import('./src/components/player/progress-circle.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Scroll: typeof import('./src/components/scroll/scroll.vue')['default']

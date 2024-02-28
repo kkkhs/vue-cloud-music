@@ -20,14 +20,14 @@
         default: 0
       }
     },
-    emits: ['scroll'],
+    emits: ['scroll'],  //派发事件
     setup(props, { emit }) {
       const rootRef = ref(null)
       const scroll = useScroll(rootRef, props, emit)
 
       return {
         rootRef,
-        scroll
+        scroll  // 暴露scroll实例
       }
     }
   }

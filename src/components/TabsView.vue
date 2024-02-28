@@ -1,6 +1,5 @@
 <script setup>
 import { RouterView, useRoute, useRouter } from 'vue-router';
-import { ref } from 'vue'
 
 const tabs = [
   {
@@ -32,7 +31,6 @@ const tabs = [
 const route = useRoute()
 const router = useRouter()
 const active = ref(route.name)
-console.log(active.value)
 watch(active, (nv) =>{
   console.log(nv)
   router.push({name: nv})
@@ -40,7 +38,7 @@ watch(active, (nv) =>{
 </script>
 
 <template>
-    <router-view/>
+    <router-view />
     <v-bottom-navigation 
       style="z-index: 10;"
       mode="shift"

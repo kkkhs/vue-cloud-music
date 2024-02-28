@@ -13,8 +13,8 @@ const { singer } = defineProps({
   <div
     class="tw-flex tw-justify-start tw-pl-2 tw-mb-3 tw-items-center tw-min-h-12"
   >
-    <img 
-      :src="singer.picUrl" 
+  <img 
+      v-lazy="singer.picUrl" 
       class="tw-bg-cover tw-object-cover tw-h-14 tw-w-14 tw-rounded-full">
     <span 
       class="tw-flex-1 tw-py-0 tw-ml-3 tw-text-sm">{{ singer.name }}</span>

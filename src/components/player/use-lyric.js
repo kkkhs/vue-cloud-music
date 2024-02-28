@@ -18,7 +18,7 @@ export default function useLyric({ songReady, currentTime }){
   const lyric = reactive({})
 
   watch(currentSong, (newSong) => {
-    if(!newSong.id){
+    if(!newSong?.id){
       return 
     }
     //防止切歌歌词跳动:
@@ -70,7 +70,7 @@ export default function useLyric({ songReady, currentTime }){
 
   // 歌词处理函数
   function handleLyric({ lineNum, txt }){
-    console.log(txt)
+    // console.log(txt)
     currentLineNum.value = lineNum
     playingLyric.value = txt //当前播放歌词
     const scrollComp = lyricScrollRef.value // 拿到Scroll组件实例

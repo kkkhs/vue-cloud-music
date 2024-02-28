@@ -13,6 +13,7 @@ import App from './App.vue'
 // Composables
 import { createApp } from 'vue'
 import loadingDirective from '@/directive/loading/directive' //引入loading指令
+import lazyPlugin from 'vue3-lazy'
 
 const app = createApp(App)
 

@@ -23,6 +23,10 @@ export default function useFavorite() {
     }
   }
 
+  function FavoriteIcon(song){
+    return isFavorite(song) ? 'mdi-heart' : 'mdi-heart-outline'
+  }
+
   // 查询是否喜欢
   function isFavorite(song){
     return favoriteList.value.findIndex((item) => {
@@ -32,6 +36,7 @@ export default function useFavorite() {
 
   return {
     isFavorite,
-    toggleFavorite
+    toggleFavorite,
+    FavoriteIcon
   }
 }

@@ -13,9 +13,10 @@ export default function useScroll(wrapperRef, options, emit) {
       ...options
     })
 
+    // 滚动配置probeType
     if (options.probeType > 0) {
       scrollVal.on('scroll', (pos) => {
-        emit('scroll', pos)
+        emit('scroll', pos) //派发位置信息
       })
     }
   })
