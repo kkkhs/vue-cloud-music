@@ -1,15 +1,51 @@
+<script setup>
+import { usePlayStateStore } from '@/store/playState.js'
+
+const props = defineProps({
+  songs:{
+    type: Array,
+    default: []
+  }
+})
+
+const playState = usePlayStateStore()
+const playList = computed(() => playState.state.playList)
+
+const selectItem = ({song, index}) => {
+  playState.selectPlay(props.songs, index)
+  // console.log(playState.state.playList)
+}
+
+const randomPlay = () => {
+  playState.randomPlay(props.songs)
+  // console.log(playState.state.playList)
+}
+</script>
+
 <template>
-  <div
-    class="tw-h-50 tw-w-28 tw-flex tw-flex-col tw-mr-2 tw-justify-center tw-pb-5"
-    v-for="item in data"
-    :key="item.id"
-  >
-    <v-img 
-      lazy-src="https://picsum.photos/id/11/100/60"
-      class="tw-h-28 tw-w-28 tw-rounded-xl tw-mb-1" 
-      :src="item.picUrl"
-      cover
-    />
-    <span class="tw-h-9 tw-text-[13px]">{{ item.name }}</span>
+  <div class="tw-bg-white tw-rounded-t-2xl tw-h-full">
+    <div
+      class="tw-bg-slate-200 tw-text-lg tw-leading-8 tw-pl-4 tw-py-2 tw-font-medium tw-rounded-t-2xl"
+      @click="randomPlay"
+    >
+      <v-icon 
+        icon="mdi-play-circle"
+        color="red-darken-1" 
+        class="tw-mr-3 tw--ml-2"
+      ></v-icon>
+      <span>随机播放</span>
+    </div>
+    <div
+      class=" tw-pb-[360px] "
+      :class=" {'tw-pb-12': playList.length }"
+    >
+      <div
+        v-for="(song,index) in songs"
+        :key="song.id"
+      >
+        <SongView :song="song" :index="index + 1"  @select="selectItem"></SongView>
+      </div>
+    </div>
   </div>
 </template>
+

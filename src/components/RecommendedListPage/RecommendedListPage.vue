@@ -10,6 +10,15 @@ const {data, pending} = useAsync(
 
 const onClickLeft = () => history.back()
 const loadingText = '正在载入...'
+
+const gotoPlaylistDetailPage = (id) => {
+  router.push({
+    name: 'playlistDetail',
+    params: {
+      id
+    },
+  })
+}
 </script>
 
 <template>
@@ -41,6 +50,7 @@ const loadingText = '正在载入...'
                     class="tw-h-50 tw-w-28 tw-flex tw-flex-col tw-mr-2 tw-justify-center tw-pb-5"
                     v-for="item in data"
                     :key="item.id"
+                    @click="gotoPlaylistDetailPage(item.id)"
                   >
                     <v-img 
                       lazy-src="https://static.infinitytab.com/infinity-official/img/IMG-LOGO@2x.png"

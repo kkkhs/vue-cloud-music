@@ -2,13 +2,12 @@
 import { useRoute } from 'vue-router';
 import { useAsync } from '@/use/useAsync';
 import { fetchArtistDetailData, fetchArtistFollowCount, fetchArtistTopSong } from '@/api/artistDetail'
-import SongView from '@/components/SongView.vue';
-import { usePlayStateStore } from '@/store/playState.js'
 import Scroll from '@/components/scroll/scroll.vue';
+import MusicList from '@/components/MusicList.vue';
 
+const loadingText = '正在载入...'
 const TOP_HEIGHT = 48  // 顶部高度
 
-const playState = usePlayStateStore()
 let imgHeight = 0
 let maxTranslateY = 0
 const bgImg = ref(null)
@@ -16,7 +15,7 @@ const scrollY = ref(0)
 const title = ref('')
 
 const route = useRoute()
-const playList = computed(() => playState.state.playList)
+
 const { id } = route.params
 const { data, pending } = useAsync(() => fetchArtistDetailData(id).then(v => v.data.data), {})
 const { data: followData } = useAsync(() => fetchArtistFollowCount(id).then(v => v.data.data), {})
@@ -79,22 +78,12 @@ const onScroll = (pos) => {
   scrollY.value = -pos.y + 40
 }
 
-const selectItem = ({song, index}) => {
-  playState.selectPlay(TopSong.value, index)
-  // console.log(playState.state.playList)
-}
-
-const randomPlay = () => {
-  playState.randomPlay(TopSong.value)
-  // console.log(playState.state.playList)
-}
-
 </script>
 
 <template>
     <div class="tw-fixed tw-top-0 tw-bottom-0 tw-left-0 tw-right-0 tw-z-10 " >
      <div class="tw-relative tw-h-full">
-        <div class="tw-flex tw-rounded-b-2xl tw-justify-between tw-items-center tw-absolute tw-z-50 tw-top-0 tw-left-0 tw-w-full tw-h-12 tw-text-white" 
+        <div class="tw-flex tw-rounded-b-2xl tw-justify-between tw-items-center tw-absolute tw-z-50 tw-top-0 tw-left-0 tw-w-full tw-h-12 tw-text-white tw-transition-all tw-ease-in-out tw-duration-1000" 
           :style="TopStyle()"
         >
           <v-icon 
@@ -117,7 +106,8 @@ const randomPlay = () => {
           class="tw-relative tw-w-full tw-origin-top tw-bg-cover"
         >
           <img 
-            :src="data?.artist?.cover"  
+            v-if="data.artist?.cover"
+            v-lazy="data.artist?.cover"  
             class="tw-absolute tw-top-0 tw-left-0 tw-w-full tw-h-full tw-object-cover">
         </div>
         <Scroll 
@@ -126,7 +116,7 @@ const randomPlay = () => {
           :probe-type="3"
           @scroll="onScroll"
         >
-          <div class="">
+          <div class="" v-loading:[loadingText]="pending">
             <div
               class=" tw-bg-white tw-shadow-lg tw-border-solid tw-border-2 tw-border-black tw-border-opacity-15 tw-z-10 tw-flex tw-flex-nowrap tw-flex-col tw-items-center tw-rounded-xl tw-mx-3 tw-py-4 tw-mb-3 -tw-mt-10 tw-bg-opacity-90"
             >
@@ -135,29 +125,8 @@ const randomPlay = () => {
               <div class="tw-text-base">{{ followData?.fansCnt }} <span class="tw-text-sm">粉丝</span></div>
               <div class=" tw-max-w-72 tw-truncate ">{{ data?.identify?.imageDesc }}</div>
             </div>      
-            <div class=" tw-bg-white">
-              <div
-                class="tw-bg-slate-200 tw-text-lg tw-leading-8 tw-pl-4 tw-mb-3 tw-font-medium tw-rounded-2xl"
-                @click="randomPlay"
-              >
-                <v-icon 
-                  icon="mdi-play-circle"
-                  color="red-darken-1" 
-                  class="tw-mr-3 tw--ml-2"
-                ></v-icon>
-                <span>随机播放热门50</span>
-              </div>
-              <div
-                class=" tw-pb-[360px]"
-                :class=" {'tw-pb-12': playList.length }"
-              >
-                <div
-                  v-for="(song,index) in TopSong"
-                  :key="song.id"
-                >
-                  <SongView :song="song" :index="index + 1"  @select="selectItem"></SongView>
-                </div>
-              </div>
+            <div class="">
+              <MusicList :songs="TopSong"></MusicList>
             </div>
           </div>
         </Scroll>

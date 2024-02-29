@@ -28,6 +28,14 @@ onUnmounted(() => {
   bs.value.destroy()
 })
 
+const gotoPlaylistDetailPage = (id) => {
+  router.push({
+    name: 'playlistDetail',
+    params: {
+      id
+    },
+  })
+}
 </script>
 
 <template>
@@ -48,6 +56,7 @@ onUnmounted(() => {
               class="tw-h-50 tw-w-32 tw-flex tw-flex-col tw-mr-5 tw-justify-center tw-pb-3"
               v-for="item in data"
               :key="item.id"
+              @click="gotoPlaylistDetailPage(item.id)"
             >
               <v-img 
                 lazy-src="https://picsum.photos/id/11/100/60"

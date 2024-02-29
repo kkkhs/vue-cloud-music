@@ -43,7 +43,6 @@ declare module 'vue-router/auto/routes' {
     '/community/CommunityView': RouteRecordInfo<'/community/CommunityView', '/community/CommunityView', Record<never, never>, Record<never, never>>,
     '/find/FindView': RouteRecordInfo<'/find/FindView', '/find/FindView', Record<never, never>, Record<never, never>>,
     '/find/header/HeaderView': RouteRecordInfo<'/find/header/HeaderView', '/find/header/HeaderView', Record<never, never>, Record<never, never>>,
-    '/find/RecommendedListPage/RecommendedListPage': RouteRecordInfo<'/find/RecommendedListPage/RecommendedListPage', '/find/RecommendedListPage/RecommendedListPage', Record<never, never>, Record<never, never>>,
     '/find/tabs/FindTabsView': RouteRecordInfo<'/find/tabs/FindTabsView', '/find/tabs/FindTabsView', Record<never, never>, Record<never, never>>,
     '/find/tabs/recommend/BannerView': RouteRecordInfo<'/find/tabs/recommend/BannerView', '/find/tabs/recommend/BannerView', Record<never, never>, Record<never, never>>,
     '/find/tabs/recommend/LineListView': RouteRecordInfo<'/find/tabs/recommend/LineListView', '/find/tabs/recommend/LineListView', Record<never, never>, Record<never, never>>,
