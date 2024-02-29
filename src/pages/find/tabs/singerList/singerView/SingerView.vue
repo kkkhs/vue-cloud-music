@@ -133,9 +133,9 @@ const randomPlay = () => {
               <div class=" tw-text-2xl tw-font-medium"> {{ data?.artist?.name }}</div>
               <div class="tw-text-sm">{{ data?.artist?.alias[0] }}</div>
               <div class="tw-text-base">{{ followData?.fansCnt }} <span class="tw-text-sm">粉丝</span></div>
-              <div class=" tw-px-3 ">{{ data?.identify?.imageDesc }}</div>
+              <div class=" tw-max-w-72 tw-truncate ">{{ data?.identify?.imageDesc }}</div>
             </div>      
-            <div class=" tw-bg-slate-100">
+            <div class=" tw-bg-white">
               <div
                 class="tw-bg-slate-200 tw-text-lg tw-leading-8 tw-pl-4 tw-mb-3 tw-font-medium tw-rounded-2xl"
                 @click="randomPlay"
@@ -148,6 +148,7 @@ const randomPlay = () => {
                 <span>随机播放热门50</span>
               </div>
               <div
+                class=" tw-pb-[360px]"
                 :class=" {'tw-pb-12': playList.length }"
               >
                 <div

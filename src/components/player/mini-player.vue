@@ -84,7 +84,7 @@ defineExpose({ changeBottom })
             :key="song.id"
           >
             <p
-              class="tw-text-base tw-leading-5 tw-font-normal"
+              class="tw-text-base tw-leading-5 tw-font-normal tw-truncate tw-max-w-52"
             >
               <span v-if="song.fee == 1" class=" tw-text-red-400 tw-border-solid tw-border tw-text-xs tw-rounded tw-px-0.5 tw-mr-1">VIP</span>
             {{ song?.name }}

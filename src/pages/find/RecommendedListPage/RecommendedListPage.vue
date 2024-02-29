@@ -43,12 +43,12 @@ const loadingText = '正在载入...'
                     :key="item.id"
                   >
                     <v-img 
-                      lazy-src="https://picsum.photos/id/11/100/60"
+                      lazy-src="https://static.infinitytab.com/infinity-official/img/IMG-LOGO@2x.png"
                       class="tw-h-28 tw-w-28 tw-rounded-xl tw-mb-1" 
                       :src="item.picUrl"
                       cover
                     />
-                    <span class="tw-h-9 tw-text-[13px]">{{ item.name }}</span>
+                    <span class="tw-h-9 tw-text-[13px] tw-line-clamp-2">{{ item.name }}</span>
                   </div>
                 </div>
               </v-card>

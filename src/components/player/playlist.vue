@@ -167,7 +167,7 @@ defineExpose({ show })
                 </span>
                 
                 <span 
-                  class="text tw-flex-1 tw-text-base"
+                  class="text tw-flex-1 tw-text-base tw-truncate"
                 >
                   <span
                     v-if="song.fee == 1" 

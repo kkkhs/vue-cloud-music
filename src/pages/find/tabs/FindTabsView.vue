@@ -2,7 +2,17 @@
 import { ref } from 'vue'
 import RecommendView from './recommend/RecommendView.vue'
 import SingerList from './singerList/singerList.vue'
-const tab = ref(null)
+import { useWindowStateStore } from '@/store/windowState';
+
+const windowState = useWindowStateStore()
+console.log(windowState.state)
+const tab = ref(windowState.state)
+
+watch(tab, (nt) => {
+  windowState.state = nt
+  // console.log(windowState.state )
+})
+
 </script>
 
 <template>
@@ -12,6 +22,7 @@ const tab = ref(null)
   >
     <v-tabs
       :elevation="0"
+      color="red-lighten-2"
       v-model="tab"
       class="tw-fixed tw-z-10 tw-bg-white tw-w-full"
     >
