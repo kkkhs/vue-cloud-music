@@ -1,6 +1,8 @@
 <script setup>
 import { useRouter } from 'vue-router';
+import { useWindowStateStore } from '@/store/windowState';
 
+const windowState = useWindowStateStore()
 const router = useRouter()
 const menus = [
   {
@@ -19,7 +21,8 @@ const menus = [
   },{
     id: 4,
     icon: 'mdi-list-box',
-    name: '排行榜'
+    name: '排行榜',
+    Fn: () => { windowState.state = 'three' }
   },{
     id: 5,
     icon: 'mdi-book-play',

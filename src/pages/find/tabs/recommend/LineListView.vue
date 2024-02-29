@@ -1,6 +1,6 @@
 <script setup>
 import { useAsync } from '@/use/useAsync';
-import {fetchRecommendedPlayListData} from '@/api/RecommendedPlayList'
+import { fetchRecommendedPlayListData } from '@/api/RecommendedPlayList'
 import { useRouter } from 'vue-router';
 import BScroll from '@better-scroll/core'
 import ObserveDOM from "@better-scroll/observe-dom";
@@ -19,6 +19,7 @@ const GotoRecommendedListPage = () => {
 onMounted(() => {
   bs.value = new BScroll(scroll.value, {
     observeDOM: true,
+    scrollY: false,
     scrollX: true,
     click: true,
   })
@@ -36,6 +37,7 @@ const gotoPlaylistDetailPage = (id) => {
     },
   })
 }
+
 </script>
 
 <template>
@@ -45,6 +47,7 @@ const gotoPlaylistDetailPage = (id) => {
     </div>
     <div 
       ref="scroll"
+      @click="test"
       class="tw-relative tw-w-full tw-overflow-hidden  white-space nowrap" 
     >
       <div class="tw-inline-block tw-w-auto">

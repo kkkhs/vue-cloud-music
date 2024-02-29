@@ -58,10 +58,11 @@ const { data, pending } = useAsync(() => fetchSingerListData(100).then((v) => {
 })
 , [])
 
+const loadingText = '正在载入...'
 </script>
 
 <template>
-  <div class="tw-fixed tw-w-full tw-left-0 tw-top-24 tw-bottom-14">
-    <IndexList :singers="data" :pending="pending"></IndexList>
+  <div class="tw-fixed tw-w-full tw-left-0 tw-top-24 tw-bottom-14" v-loading:[loadingText]="pending">
+    <IndexList :singers="data"></IndexList>
   </div>
 </template>

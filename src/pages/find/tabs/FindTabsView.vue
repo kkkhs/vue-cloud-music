@@ -1,17 +1,12 @@
 <script setup>
-import { ref } from 'vue'
 import RecommendView from './recommend/RecommendView.vue'
 import SingerList from './singerList/singerList.vue'
+import TopList from './topList/TopList.vue'
 import { useWindowStateStore } from '@/store/windowState';
 
 const windowState = useWindowStateStore()
 console.log(windowState.state)
-const tab = ref(windowState.state)
 
-watch(tab, (nt) => {
-  windowState.state = nt
-  // console.log(windowState.state )
-})
 
 </script>
 
@@ -23,7 +18,7 @@ watch(tab, (nt) => {
     <v-tabs
       :elevation="0"
       color="red-lighten-2"
-      v-model="tab"
+      v-model="windowState.state"
       class="tw-fixed tw-z-10 tw-bg-white tw-w-full"
     >
       <v-tab value="one">推荐</v-tab>
@@ -32,7 +27,7 @@ watch(tab, (nt) => {
     </v-tabs>
 
     <v-card-text>
-      <v-window v-model="tab">
+      <v-window v-model="windowState.state">
         <v-window-item value="one">
           <RecommendView></RecommendView>
         </v-window-item>
@@ -42,7 +37,7 @@ watch(tab, (nt) => {
         </v-window-item>
 
         <v-window-item value="three">
-          排行榜页
+          <TopList></TopList>
         </v-window-item>
       </v-window>
     </v-card-text>

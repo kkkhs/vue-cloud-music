@@ -22,5 +22,6 @@ declare module 'vue' {
     Slider: typeof import('./src/components/slider/slider.vue')['default']
     SongView: typeof import('./src/components/SongView.vue')['default']
     TabsView: typeof import('./src/components/TabsView.vue')['default']
+    TopList: typeof import('./src/components/TopList.vue')['default']
   }
 }

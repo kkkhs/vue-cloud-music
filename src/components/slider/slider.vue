@@ -23,7 +23,7 @@ const { currentPageIndex } = useSlider(rootRef)
         v-for="item in sliders"
         :key="item.targetId"
       >
-        <a :href="item.link">
+        <a :href="item.url">
           <img :src="item.pic"/>
         </a>
       </div>
