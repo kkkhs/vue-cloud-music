@@ -28,9 +28,6 @@ const gotoDetail = (id) => {
   })
 }
 
-const test = () => {
-  console.log(123)
-}
 </script>
 
 <template>

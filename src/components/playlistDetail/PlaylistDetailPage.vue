@@ -50,7 +50,7 @@ const onScroll = (pos) => {
 </script>
 
 <template>
-  <div class=" tw-fixed tw-top-0 tw-bottom-0 tw-left-0 tw-right-0 tw-bg-white">
+  <div class=" tw-fixed tw-top-0 tw-bottom-0 tw-left-0 tw-right-0 tw-bg-white" >
     <div class="tw-fixed tw-top-0 tw-bottom-1/2 tw-left-0 tw-right-0 tw-bg-red-400 -tw-z-10"></div>
     <div 
       class="tw-flex tw-rounded-b-2xl tw-justify-between tw-items-center tw-absolute tw-z-50 tw-top-0 tw-left-0 tw-w-full tw-h-14 tw-text-white tw-transition-all tw-ease-in-out tw-duration-1000" 
@@ -100,9 +100,18 @@ const onScroll = (pos) => {
           </div>
           <div class=" tw-line-clamp-1 tw-text-sm tw-opacity-80"> {{ data?.description }}</div>
           <div class="tw-flex tw-justify-between tw-my-5">
-            <div class="tw-h-10 tw-bg-white rounded-pill tw-w-24 tw-bg-opacity-45"></div>
-            <div class="tw-h-10 tw-bg-white rounded-pill tw-w-24 tw-bg-opacity-45"></div>
-            <div class="tw-h-10 tw-bg-red-500 rounded-pill tw-w-24"></div>
+            <div class="tw-h-10 tw-bg-white rounded-pill tw-w-24 tw-bg-opacity-45 tw-pl-3 tw-flex tw-items-center">
+              <v-icon class=" tw--mt-1" size="30" icon="mdi-share"></v-icon>
+              <span class=" tw-text-sm">{{ data?.shareCount }}</span>
+            </div>
+            <div class="tw-h-10 tw-bg-white rounded-pill tw-w-24 tw-bg-opacity-45 tw-pl-3 tw-flex tw-items-center">
+              <v-icon icon="mdi-chat-processing"></v-icon>
+              <span class=" tw-text-sm">{{ data?.commentCount }}</span>
+            </div>
+            <div class="tw-h-10 tw-bg-red-500 rounded-pill tw-w-24 tw-pl-3 tw-flex tw-items-center">
+              <v-icon icon="mdi-plus-box-multiple"></v-icon>
+              <span class=" tw-text-sm">{{ data?.subscribedCount }}</span>
+            </div>
           </div>
         </div>
         <div class="bottom tw-h-full" v-loading:[loadingText]="pending">
