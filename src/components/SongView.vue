@@ -1,4 +1,5 @@
 <script setup>
+import { formatArtistName } from '@/utils/formatArtistsName'
 const { song, index } = defineProps({
   song: {
     type: Object, // 接收的参数类型
@@ -7,6 +8,10 @@ const { song, index } = defineProps({
   index: {
     type: Number,
     default: 0
+  },
+  hasIndex: {
+    type: Boolean,
+    default: true
   }
 })
 //派发事件
@@ -20,10 +25,11 @@ const selectItem = (song, index) => {
 
 <template>
   <div 
-    class="tw-flex tw-items-center tw-my-4"
+    class="tw-flex tw-items-center tw-mt-4 tw-mb-2 tw-pb-2  tw-border-solid tw-border-slate-200 tw-border-t-0 tw-border-l-0 tw-border-r-0 tw-border-[1px]"
     @click="selectItem(song, index - 1)"
   >
     <div
+      v-if="hasIndex"
       class="tw-w-12 tw-opacity-70 tw-text-center tw-text-lg"
     >{{ index }}</div>
     <div 
@@ -33,8 +39,15 @@ const selectItem = (song, index) => {
       <div class="tw-line-clamp-1 tw-max-w-60">
         <span v-if="song.fee == 1" class=" tw-text-red-400 tw-border-solid tw-border tw-text-xs tw-rounded tw-px-0.5 tw-mr-1">VIP</span>
         <span
+          v-if="song.ar"
           class="tw-text-sm tw-opacity-70 "  
-        >{{ song.ar[0].name }} - {{ song.al.name }}</span>
+        >{{ formatArtistName(song.ar) }} - {{ song.al.name }}
+        </span>
+        <span
+          v-if="song.artists"
+          class="tw-text-sm tw-opacity-70 "  
+        >{{ formatArtistName(song.artists) }} - {{ song.album.name }}
+        </span>
       </div>
       <div 
         v-if="song.awardName"
@@ -43,7 +56,7 @@ const selectItem = (song, index) => {
     </div>
     <div class="tw-opacity-35">
       <v-icon icon="mdi-music-circle-outline" size="30" class="tw-text-lg"></v-icon>
-      <v-icon icon="mdi-dots-vertical" class="tw-mr-3 tw-ml-3"></v-icon>
+      <v-icon icon="mdi-dots-vertical" class="tw-mr-2 tw-ml-3"></v-icon>
     </div>
   </div>
 </template>

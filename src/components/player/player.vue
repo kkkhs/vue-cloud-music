@@ -4,6 +4,7 @@ import { usePlayStateStore } from '@/store/playState.js'
 import { useAsync } from '@/use/useAsync';
 import { fetchSongUrl } from '@/api/songUrl.js';
 import { formatTime } from '@/utils/formatTime';
+import { formatArtistName } from '@/utils/formatArtistsName'
 import progressBar from './progress-bar.vue';
 import miniPlayer from './mini-player.vue';
 import useMode from './use-mode';
@@ -237,7 +238,14 @@ defineExpose({ changeBottom })
           <div 
             class=" tw-absolute tw-left-0 tw-top-0 tw-w-full tw-h-full -tw-z-10 tw-blur-[90px] tw-scale-150"
           >
-            <img class=" tw-w-full tw-h-full" :src="currentSong?.al?.picUrl">
+            <img
+              v-if="currentSong.al" 
+              class=" tw-w-full tw-h-full" :src="currentSong?.al?.picUrl"
+            >
+            <img
+              v-if="currentSong.al" 
+              class=" tw-w-full tw-h-full" :src="currentSong?.al?.picUrl"
+            >
           </div>
           <div
             @click="playState.state.fullScreen = !playState.state.fullScreen" 
@@ -251,8 +259,13 @@ defineExpose({ changeBottom })
               class="tw-text-center tw-text-xl tw-font-normal tw-mt-2"
             >{{ currentSong?.name }}</h1>
             <h2 
+              v-if="currentSong.ar"
               class=" tw-text-center tw-text-lg tw-font-normal tw-opacity-60"
-            >{{ currentSong?.ar[0]?.name }}</h2>
+            >{{ formatArtistName(currentSong.ar)}}</h2>
+            <h2 
+              v-if="currentSong.artists"
+              class=" tw-text-center tw-text-lg tw-font-normal tw-opacity-60"
+            >{{ formatArtistName(currentSong.artists)}}</h2>
           </div>
           <div 
             ref="middle"

@@ -1,5 +1,6 @@
 <script setup>
 import { usePlayStateStore } from '@/store/playState.js'
+import { formatArtistName } from '@/utils/formatArtistsName'
 import useCd from './use-cd';
 import ProgressCircle from './progress-circle.vue';
 import useMiniSlider from './use-mini-slider';
@@ -68,7 +69,7 @@ defineExpose({ changeBottom })
           :class="{'tw-animate-spin-slow': cdCls}"
         >
           <img 
-            class=" tw-h-12 tw-w-12 tw-rounded-full tw-mx-0 tw-my-auto"
+            class=" tw-h-11 tw-w-11 tw-rounded-full tw-mx-0 tw-my-auto"
             :src="currentSong?.al?.picUrl"
           >
         </div>
@@ -89,8 +90,16 @@ defineExpose({ changeBottom })
               <span v-if="song.fee == 1" class=" tw-text-red-400 tw-border-solid tw-border tw-text-xs tw-rounded tw-px-0.5 tw-mr-1">VIP</span>
             {{ song?.name }}
               <span
+                v-if="song.ar"
                 class="tw-text-center tw-text-sm tw-leading-5 tw-font-normal tw-opacity-60"
-              > -  {{ song?.ar[0]?.name }}</span>
+              > -  {{ formatArtistName(song.ar) }}
+              </span>
+              <span
+                v-if="song.artists"
+                class="tw-text-center tw-text-sm tw-leading-5 tw-font-normal tw-opacity-60"
+              > -  {{ formatArtistName(song.artists) }}
+              </span>
+              
             </p>
             
           </div>

@@ -7,7 +7,7 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    copy: typeof import('./src/components/search/search-input copy.vue')['default']
+    copy: typeof import('./src/components/search/search copy.vue')['default']
     MiniPlayer: typeof import('./src/components/player/mini-player.vue')['default']
     MusicList: typeof import('./src/components/MusicList.vue')['default']
     Player: typeof import('./src/components/player/player.vue')['default']
@@ -16,13 +16,13 @@ declare module 'vue' {
     ProgressBar: typeof import('./src/components/player/progress-bar.vue')['default']
     ProgressCircle: typeof import('./src/components/player/progress-circle.vue')['default']
     RecommendedListPage: typeof import('./src/components/RecommendedListPage/RecommendedListPage.vue')['default']
+    Result: typeof import('./src/components/search/result.vue')['default']
+    ResultSongList: typeof import('./src/components/ResultSongList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Scroll: typeof import('./src/components/scroll/scroll.vue')['default']
     Search: typeof import('./src/components/search/search.vue')['default']
-    'Search copy': typeof import('./src/components/search/search copy.vue')['default']
     SearchInput: typeof import('./src/components/search/search-input.vue')['default']
-    'SearchInput copy': typeof import('./src/components/search/search-input copy.vue')['default']
     Singer: typeof import('./src/components/Singer.vue')['default']
     Slider: typeof import('./src/components/slider/slider.vue')['default']
     SongView: typeof import('./src/components/SongView.vue')['default']

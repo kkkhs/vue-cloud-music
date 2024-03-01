@@ -9,12 +9,17 @@ const props = defineProps({
   placeholder:{
     type: String,
     default: '搜索歌曲、歌手'
+  },
+  isFocused: {  // 从父组件传递的聚焦
+    type: Boolean,
+    default: false
   }
 })
 const query = ref(props.count)
+const internalIsFocused = ref(false);   //是否聚焦
 
 //派发事件
-const emit = defineEmits(['update:count'])
+const emit = defineEmits(['update:count', 'update:isFocused'])
 
 // 防抖节流
 watch(query, debounce(300, (newQuery) => {
@@ -24,12 +29,32 @@ watch(query, debounce(300, (newQuery) => {
 watch(() => props.count, (nv) => {
   query.value = nv
 })
+watch(() => props.isFocused, (newValue) => {
+  internalIsFocused.value = newValue;
+});
 
 const clear = () => {
   query.value = ''
 }
 
-const onClickLeft = () => history.back()
+const handleFocus = () => {
+  internalIsFocused.value = true;
+  emit('update:isFocused', true); // 触发自定义事件并传递值给父组件
+};
+
+const handleBlur = () => {
+  internalIsFocused.value = false;
+  emit('update:isFocused', false); // 触发自定义事件并传递值给父组件
+};
+
+const onClickLeft = () => {
+  if(!query.value){
+    history.back()
+  }else{
+    clear()
+    emit('update:count', '')  // 立马清空
+  }
+}
 
 </script>
 
@@ -45,6 +70,8 @@ const onClickLeft = () => history.back()
         class="tw-flex-1 tw-box-border tw-outline-none tw-text-lg" 
         :placeholder="placeholder"
         v-model="query"
+        @focus="handleFocus"
+        @blur="handleBlur"
       >
       <span v-show="query">
         <v-icon 
@@ -53,8 +80,7 @@ const onClickLeft = () => history.back()
         ></v-icon>
       </span>
       
-        
     </div>
-    <span class="tw-text-xl tw-text-nowrap">搜索</span>
+    <span class="tw-text-lg tw-ml-1 tw-text-nowrap">搜索</span>
   </div>
 </template>
