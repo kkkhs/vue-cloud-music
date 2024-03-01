@@ -30,10 +30,10 @@ const selectItem = (song, index) => {
       class="tw-flex-1"
     >
       <div class="tw-line-clamp-1 tw-max-w-64">{{ song.name }}</div>
-      <div class="">
+      <div class="tw-line-clamp-1 tw-max-w-60">
         <span v-if="song.fee == 1" class=" tw-text-red-400 tw-border-solid tw-border tw-text-xs tw-rounded tw-px-0.5 tw-mr-1">VIP</span>
         <span
-          class="tw-text-sm tw-opacity-70 tw-line-clamp-1 tw-max-w-60"  
+          class="tw-text-sm tw-opacity-70 "  
         >{{ song.ar[0].name }} - {{ song.al.name }}</span>
       </div>
       <div 
@@ -42,7 +42,7 @@ const selectItem = (song, index) => {
       >{{ song.awardName }}</div>
     </div>
     <div class="tw-opacity-35">
-      <v-icon icon="mdi-play" class="tw-text-lg"></v-icon>
+      <v-icon icon="mdi-music-circle-outline" size="30" class="tw-text-lg"></v-icon>
       <v-icon icon="mdi-dots-vertical" class="tw-mr-3 tw-ml-3"></v-icon>
     </div>
   </div>

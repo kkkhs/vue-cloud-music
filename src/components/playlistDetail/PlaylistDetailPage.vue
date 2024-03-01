@@ -100,17 +100,17 @@ const onScroll = (pos) => {
           </div>
           <div class=" tw-line-clamp-1 tw-text-sm tw-opacity-80"> {{ data?.description }}</div>
           <div class="tw-flex tw-justify-between tw-my-5">
-            <div class="tw-h-10 tw-bg-white rounded-pill tw-w-24 tw-bg-opacity-45 tw-pl-3 tw-flex tw-items-center">
+            <div class="tw-h-10 tw-bg-white rounded-pill tw-w-[105px] tw-bg-opacity-45 tw-justify-center tw-flex tw-items-center">
               <v-icon class=" tw--mt-1" size="30" icon="mdi-share"></v-icon>
               <span class=" tw-text-sm">{{ data?.shareCount }}</span>
             </div>
-            <div class="tw-h-10 tw-bg-white rounded-pill tw-w-24 tw-bg-opacity-45 tw-pl-3 tw-flex tw-items-center">
+            <div class="tw-h-10 tw-bg-white rounded-pill tw-w-[105px] tw-bg-opacity-45 tw-flex tw-items-center tw-justify-center">
               <v-icon icon="mdi-chat-processing"></v-icon>
-              <span class=" tw-text-sm">{{ data?.commentCount }}</span>
+              <span class="tw-text-sm tw-ml-1">{{ data?.commentCount }}</span>
             </div>
-            <div class="tw-h-10 tw-bg-red-500 rounded-pill tw-w-24 tw-pl-3 tw-flex tw-items-center">
+            <div class="tw-h-10 tw-bg-red-500 rounded-pill tw-w-[105px] tw-justify-center tw-flex tw-items-center">
               <v-icon icon="mdi-plus-box-multiple"></v-icon>
-              <span class=" tw-text-sm">{{ data?.subscribedCount }}</span>
+              <span class=" tw-text-sm tw-ml-1">{{ data?.subscribedCount }}</span>
             </div>
           </div>
         </div>

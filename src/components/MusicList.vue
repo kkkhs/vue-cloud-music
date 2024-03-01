@@ -10,6 +10,7 @@ const props = defineProps({
 
 const playState = usePlayStateStore()
 const playList = computed(() => playState.state.playList)
+const currentSong = computed(() => playState.currentSong())
 
 const selectItem = ({song, index}) => {
   playState.selectPlay(props.songs, index)
@@ -19,6 +20,10 @@ const selectItem = ({song, index}) => {
 const randomPlay = () => {
   playState.randomPlay(props.songs)
   // console.log(playState.state.playList)
+}
+
+const current = (song) => {
+  return currentSong.value?.id === song?.id
 }
 </script>
 
@@ -42,6 +47,7 @@ const randomPlay = () => {
       <div
         v-for="(song,index) in songs"
         :key="song.id"
+        :class=" {'tw-text-red-500' : current(song) }"
       >
         <SongView :song="song" :index="index + 1"  @select="selectItem"></SongView>
       </div>

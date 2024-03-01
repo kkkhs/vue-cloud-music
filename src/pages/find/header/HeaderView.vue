@@ -1,5 +1,12 @@
 <script setup>
 
+const router = useRouter()
+const gotoSearch = () => {
+  router.push({
+    name: 'search'
+  })
+}
+
 </script>
 
 <template>
@@ -9,9 +16,8 @@
       </template>
       <v-app-bar-title>发现</v-app-bar-title>
       <template v-slot:append>
-        <v-btn icon="mdi-heart"></v-btn>
 
-        <v-btn icon="mdi-magnify"></v-btn>
+        <v-btn icon="mdi-magnify" @click="gotoSearch"></v-btn>
 
         <v-btn icon="mdi-dots-vertical"></v-btn>
       </template>
