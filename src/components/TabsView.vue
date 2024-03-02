@@ -1,3 +1,4 @@
+<!-- 底部导航栏 -->
 <script setup>
 import { RouterView, useRoute, useRouter } from 'vue-router';
 

@@ -90,14 +90,8 @@ defineExpose({ changeBottom })
               <span v-if="song.fee == 1" class=" tw-text-red-400 tw-border-solid tw-border tw-text-xs tw-rounded tw-px-0.5 tw-mr-1">VIP</span>
             {{ song?.name }}
               <span
-                v-if="song.ar"
                 class="tw-text-center tw-text-sm tw-leading-5 tw-font-normal tw-opacity-60"
               > -  {{ formatArtistName(song.ar) }}
-              </span>
-              <span
-                v-if="song.artists"
-                class="tw-text-center tw-text-sm tw-leading-5 tw-font-normal tw-opacity-60"
-              > -  {{ formatArtistName(song.artists) }}
               </span>
               
             </p>

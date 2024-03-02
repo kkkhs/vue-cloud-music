@@ -5,23 +5,24 @@ import result from './result.vue'
 import { useAsync } from '@/use/useAsync';
 import { fetchSearchHotData } from '@/api/search'
 import scroll from '../scroll/scroll.vue';
+import { useSearchStateStore } from '@/store/searchState';
+import { cnPOSTag } from 'segmentit';
 
-const query = ref(null)
-const isFocused = ref(false);
+const searchState = useSearchStateStore()
+const query = computed(() => searchState.state.query)
+const isSearch = computed(() => searchState.state.isSearch)
 
-watch(isFocused, (nq) => {
-  console.log(nq)
+watch(query, (newQuery) => {
+  // console.log(' search------', newQuery)
+  searchState.state.query = newQuery
 })
-
-const updateIsFocused = (value) => {
-  isFocused.value = value; // 更新父组件中的 isFocused 变量
-};
 
 // api
 const { data:hotLists, pending:pending1} = useAsync(() => fetchSearchHotData().then( v => v.data.data),{})
 
 const addQuery = (s) => {
-  query.value = s
+  searchState.state.query = s
+  searchState.state.isSearch = true
 }
 
 </script>
@@ -30,16 +31,12 @@ const addQuery = (s) => {
   <div class="tw-fixed tw-top-0 tw-bottom-0 tw-left-0 tw-right-0 tw-bg-slate-200 tw-flex tw-flex-col">
     <div 
       class="tw-fixed tw-left-0 tw-top-0 tw-right-0 tw-h-14 tw-z-50 tw-bg-slate-200"
-      :class="{ 'tw-bg-white' : query && !isFocused }"
+      :class="{ 'tw-bg-white' : query && isSearch }"
     >
-      <searchInput 
-        v-model:count="query"
-        :is-focused="isFocused" 
-        @update:is-focused="updateIsFocused"  
-      ></searchInput>
+      <searchInput></searchInput>
     </div>
     <div class="search-content tw-h-full" v-show="!query">
-      <scroll class="tw-h-full">
+      <scroll class="scroll tw-h-full">
         <div class="tw-h-fit tw-pt-20 ">
           <div class="hot tw-bg-white tw-rounded-2xl tw-mx-5 tw-px-4 py-4">
             <div class=" tw-pb-3 tw-border-b-[1px] tw-border-t-0 tw-border-l-0 tw-border-r-0 tw-border-solid tw-border-b-slate-200">
@@ -70,12 +67,12 @@ const addQuery = (s) => {
       </scroll>
       
     </div>
-    <div class="search-suggest tw-h-full" v-show="query && isFocused">
-      <suggest :query="query"></suggest>
+    <div class="search-suggest tw-h-full" v-show="query && !isSearch">
+      <suggest></suggest>
     </div>
 
-    <div class="search-result tw-h-full" v-if="query && !isFocused">
-      <div class="wrapper tw-pt-14 tw-h-fit">
+    <div class="search-result tw-h-full" v-if="isSearch">
+      <div class="wrapper tw-pt-14 tw-h-full">
         <result :query="query"></result>
       </div>
     </div>

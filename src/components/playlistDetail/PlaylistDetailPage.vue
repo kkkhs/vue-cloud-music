@@ -114,7 +114,7 @@ const onScroll = (pos) => {
             </div>
           </div>
         </div>
-        <div class="bottom tw-h-full" v-loading:[loadingText]="pending">
+        <div class="bottom tw-h-full tw-px-3 tw-bg-white tw-rounded-2xl" v-loading:[loadingText]="pending">
           <MusicList :songs="data.tracks"></MusicList>
         </div>
       </div>

@@ -1,3 +1,4 @@
+<!-- 歌曲列表 -->
 <script setup>
 import { usePlayStateStore } from '@/store/playState.js'
 
@@ -32,7 +33,7 @@ const current = (song) => {
 </script>
 
 <template>
-  <div class="tw-bg-white tw-rounded-t-2xl tw-h-full">
+  <div class="tw-bg-white">
     <div
       class="tw-bg-white tw-text-lg tw-leading-8 tw-pl-2 tw-py-2 tw-font-medium tw-border-solid tw-border-t-0 tw-border-l-0 tw-border-slate-200 tw-border-r-0 tw-border-[1px] tw-rounded-t-2xl"
       @click="selectPlay"
@@ -45,7 +46,7 @@ const current = (song) => {
       <span>播放全部</span>
     </div>
     <div
-      class=" tw-pb-[360px] "
+      class="tw-pb-24 "
       :class=" {'tw-pb-12': playList.length }"
     >
       <div

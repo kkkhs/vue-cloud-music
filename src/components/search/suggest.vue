@@ -1,38 +1,42 @@
 <script setup>
 import { useAsync } from '@/use/useAsync';
 import { fetchSearchSuggestData } from '@/api/search'
+import { brightenKeyword } from '@/utils/highlightKeyword'
+import { useSearchStateStore } from '@/store/searchState';
 
-const props = defineProps({
-  query: {
-    type: String,
-    default: ''
-  },
-  showSinger: {
-    type: Boolean,
-    default: true
-  }
-})
+const searchState = useSearchStateStore()
+const query = computed(() => searchState.state.query)
 
 const loadingText = '正在载入...'
 const suggest = ref([])
 
-const { pending, execute } = useAsync(() => fetchSearchSuggestData(props.query).then(v => {
+const { pending, execute } = useAsync(() => fetchSearchSuggestData(query.value).then(v => {
   suggest.value = v.data.result.allMatch
-}), [])  
+}), [], false)  
 
-watch(() => props.query, (newQuery) => {
+onMounted(() => {
+  execute();
+})
+
+watch(query, (newQuery) => {
+  // console.log(' searchSuggest------', newQuery)
+
   if(!newQuery){
     return
   }
+  searchState.state.query = newQuery
   suggest.value = []
+  execute();
 })
 
-watch(() => props.query, (newQuery) => {
-  if (newQuery) {
-    execute();
-  }
-})
+const handleClick = (word) => {
+  searchState.state.query = word;
+  searchState.state.isSearch = true;
+};
 
+const back = () => {
+  searchState.state.query = ''
+}
 </script>
 
 <template>
@@ -42,9 +46,17 @@ watch(() => props.query, (newQuery) => {
       class=" tw-h-12 tw-flex tw-items-center"
       v-for="item in suggest"
       :key="item.keyword"
+      @click="handleClick(item.keyword)"
     >
       <v-icon size="23" icon="mdi-magnify" class="tw-opacity-60 tw-ml-5 tw-mr-2"></v-icon>
-      <span class=" tw-flex-1 tw-border-solid tw-border-t-0 tw-border-l-0 tw-border-r-0 tw-border-slate-300 tw-border-b-[1px] tw-text-lg tw-leading-10 tw-line-clamp-1">{{ item.keyword }}</span>
+      <span 
+        class=" tw-flex-1 tw-border-solid tw-border-t-0 tw-border-l-0 tw-border-r-0 tw-border-slate-300 tw-border-b-[1px] tw-text-lg tw-leading-10 tw-line-clamp-1"
+        v-html="brightenKeyword(item.keyword, query)"
+      ></span>
     </div>
+    <div 
+      class="tw-w-full tw-flex-1"
+      @click="back()"  
+    ></div>
   </div>
 </template>

@@ -1,3 +1,7 @@
+<!-- 
+  歌曲简略
+ -->
+
 <script setup>
 import { formatArtistName } from '@/utils/formatArtistsName'
 const { song, index } = defineProps({
@@ -30,7 +34,7 @@ const selectItem = (song, index) => {
   >
     <div
       v-if="hasIndex"
-      class="tw-w-12 tw-opacity-70 tw-text-center tw-text-lg"
+      class=" tw-mr-3 tw-opacity-70 tw-text-lg tw-text-left"
     >{{ index }}</div>
     <div 
       class="tw-flex-1"
@@ -39,14 +43,8 @@ const selectItem = (song, index) => {
       <div class="tw-line-clamp-1 tw-max-w-60">
         <span v-if="song.fee == 1" class=" tw-text-red-400 tw-border-solid tw-border tw-text-xs tw-rounded tw-px-0.5 tw-mr-1">VIP</span>
         <span
-          v-if="song.ar"
           class="tw-text-sm tw-opacity-70 "  
         >{{ formatArtistName(song.ar) }} - {{ song.al.name }}
-        </span>
-        <span
-          v-if="song.artists"
-          class="tw-text-sm tw-opacity-70 "  
-        >{{ formatArtistName(song.artists) }} - {{ song.album.name }}
         </span>
       </div>
       <div 

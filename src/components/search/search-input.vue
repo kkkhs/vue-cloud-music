@@ -1,61 +1,52 @@
 <script setup>
 import { debounce } from 'throttle-debounce'
+import { useSearchStateStore } from '@/store/searchState';
 
+const searchState = useSearchStateStore()
 const props = defineProps({
-  count:{
-    type: String,
-    default: '',
-  },
   placeholder:{
     type: String,
     default: '搜索歌曲、歌手'
-  },
-  isFocused: {  // 从父组件传递的聚焦
-    type: Boolean,
-    default: false
   }
 })
-const query = ref(props.count)
-const internalIsFocused = ref(false);   //是否聚焦
 
-//派发事件
-const emit = defineEmits(['update:count', 'update:isFocused'])
+const inputValue = ref(searchState.state.query)
 
 // 防抖节流
-watch(query, debounce(300, (newQuery) => {
-  emit('update:count', newQuery.trim())
+watch(inputValue, debounce(300, (newQuery) => {
+  // console.log(' searchIput------', newQuery)
+  searchState.state.query = newQuery
 }))
 
-watch(() => props.count, (nv) => {
-  query.value = nv
-})
-watch(() => props.isFocused, (newValue) => {
-  internalIsFocused.value = newValue;
+// 监听 Pinia 中数据的变化，并更新输入框的值
+watchEffect(() => {
+  inputValue.value = searchState.state.query;
 });
 
 const clear = () => {
-  query.value = ''
+  searchState.state.query = ''
+  searchState.state.isSearch = false
+  inputValue.value = ''
 }
 
-const handleFocus = () => {
-  internalIsFocused.value = true;
-  emit('update:isFocused', true); // 触发自定义事件并传递值给父组件
-};
-
-const handleBlur = () => {
-  internalIsFocused.value = false;
-  emit('update:isFocused', false); // 触发自定义事件并传递值给父组件
-};
-
 const onClickLeft = () => {
-  if(!query.value){
+  if(!inputValue.value){
     history.back()
+    searchState.state.isSearch = false
   }else{
     clear()
-    emit('update:count', '')  // 立马清空
   }
 }
 
+const search = () => {
+  if(inputValue.value){
+    searchState.state.isSearch = true
+  }
+}
+
+const handleFocus = () => {
+  searchState.state.isSearch = false
+}
 </script>
 
 <template>
@@ -69,11 +60,10 @@ const onClickLeft = () => {
       <input 
         class="tw-flex-1 tw-box-border tw-outline-none tw-text-lg" 
         :placeholder="placeholder"
-        v-model="query"
+        v-model="inputValue"
         @focus="handleFocus"
-        @blur="handleBlur"
       >
-      <span v-show="query">
+      <span v-show="inputValue">
         <v-icon 
           size="23" icon="mdi-close-circle" class=" tw-opacity-30"
           @click="clear"
@@ -81,6 +71,6 @@ const onClickLeft = () => {
       </span>
       
     </div>
-    <span class="tw-text-lg tw-ml-1 tw-text-nowrap">搜索</span>
+    <span class="tw-text-lg tw-ml-1 tw-text-nowrap" @click="search">搜索</span>
   </div>
 </template>

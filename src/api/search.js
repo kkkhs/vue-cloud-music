@@ -12,7 +12,6 @@ export const fetchSearchSuggestData = (keywords) => {
 
 // 搜索结果
 export const fetchSearchResultData = (keywords, type,limit = 30, offset = 0) => {
-  console.log(type)
   return axios.get('search/', { params: { 
     keywords, 
     limit,

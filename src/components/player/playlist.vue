@@ -99,7 +99,7 @@ defineExpose({ show })
   <teleport to="body">
     <transition name="list-fade">
       <div
-        class="playlist tw-fixed tw-left-0 tw-right-0 tw-top-0  tw-bottom-0 tw-z-[9999] tw-bg-[#333] tw-bg-opacity-30"
+        class="playlist tw-fixed tw-left-0 tw-right-0 tw-top-0  tw-bottom-0 tw-z-[2000] tw-bg-[#333] tw-bg-opacity-30"
         v-show="visible && playList.length"
         @click="hide"
       >
@@ -118,6 +118,8 @@ defineExpose({ show })
               <v-dialog
                 v-model="dialog"
                 width="auto"
+                class=""
+                
               >
                 <v-card
                   class="rounded-xl tw-text-center"

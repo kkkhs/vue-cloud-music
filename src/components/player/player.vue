@@ -256,18 +256,13 @@ defineExpose({ changeBottom })
           <div ref="top">
             <h1 
             @click="test"
-              class="tw-text-center tw-text-xl tw-font-normal tw-mt-2"
+              class="tw-text-center tw-text-xl tw-font-normal tw-mt-2 tw-max-w-72 tw-line-clamp-1 tw-mx-auto"
             >{{ currentSong?.name }}</h1>
             <h2 
-              v-if="currentSong.ar"
               class=" tw-text-center tw-text-lg tw-font-normal tw-opacity-60"
             >{{ formatArtistName(currentSong.ar)}}</h2>
-            <h2 
-              v-if="currentSong.artists"
-              class=" tw-text-center tw-text-lg tw-font-normal tw-opacity-60"
-            >{{ formatArtistName(currentSong.artists)}}</h2>
           </div>
-          <div 
+          <div
             ref="middle"
             class="tw-fixed tw-w-full tw-top-20 tw-bottom-40 tw-whitespace-nowrap"  
             @touchstart.prevent="onMiddleTouchStart"
