@@ -1,10 +1,17 @@
 //获取需要标红的文字
 function getKeyWords(contentText, keyword) {
-  let keywordArray = keyword.split('');
+  let keywordArray = Array.isArray(keyword) ? keyword : [keyword]; // 如果关键字是数组，则直接使用，否则将其放入一个数组中
   let wordsArray = [];
   for(let key of keywordArray){
-    if(contentText.includes(key)){
-      wordsArray.push(key)
+    if(typeof key === 'string') {
+      if(contentText.includes(key)){
+        wordsArray.push(key)
+      }
+    } else if (typeof key === 'number' || typeof key === 'boolean') {
+      let keyStr = key.toString();
+      if(contentText.includes(keyStr)){
+        wordsArray.push(keyStr);
+      }
     }
   }
   return wordsArray;

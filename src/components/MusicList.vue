@@ -46,7 +46,7 @@ const current = (song) => {
       <span>播放全部</span>
     </div>
     <div
-      class="tw-pb-24 "
+      class="tw-pb-24"
       :class=" {'tw-pb-12': playList.length }"
     >
       <div

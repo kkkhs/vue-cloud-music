@@ -57,7 +57,7 @@ watch(tab, (newTab) => {
     <v-card class="h-100">
       <div class="tw-z-50 tw-bg-white">
         <v-tabs
-          grow
+          color="red-lighten-2"
           height="30"
           v-model="tab"
           bg-color="white"

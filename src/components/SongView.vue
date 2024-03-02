@@ -29,7 +29,8 @@ const selectItem = (song, index) => {
 
 <template>
   <div 
-    class="tw-flex tw-items-center tw-mt-4 tw-mb-2 tw-pb-2  tw-border-solid tw-border-slate-200 tw-border-t-0 tw-border-l-0 tw-border-r-0 tw-border-[1px]"
+    class="tw-flex tw-items-center tw-mt-2 tw-mb-2 tw-pb-2  tw-border-solid tw-border-slate-200 tw-border-t-0 tw-border-l-0 tw-border-r-0 tw-border-[1px]"
+    :class="{'tw-pt-1': !hasIndex}"
     @click="selectItem(song, index - 1)"
   >
     <div
