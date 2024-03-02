@@ -3,6 +3,7 @@ import pinyin from '@/utils/vue-py'
 import IndexList from './index-list/index-list.vue'
 import { fetchSingerListData } from '@/api/singerList.js';
 import { useAsync } from '@/use/useAsync';
+
 const { data, pending } = useAsync(() => fetchSingerListData(100).then((v) => {
   const singers = v.data.artists
   // 构造歌手 Map 数据结构

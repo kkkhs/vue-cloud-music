@@ -76,19 +76,25 @@ watch(tab, (newTab) => {
             <v-window class="h-100"  v-model="tab">
               <v-window-item class="h-100" value="1">
                 <scroll class="scroll tw-pt-1 tw-h-full">
-                  <MusicList :songs="songs" :has-index="false"></MusicList>
+                  <div class=" tw-pb-8">
+                    <MusicList :songs="songs" :has-index="false" :isHightLight="true" :keyWord="query"></MusicList>
+                  </div>
                 </scroll>
               </v-window-item>
 
               <v-window-item class="h-100" value="1000">
                 <scroll class="scroll tw-pt-1 tw-h-full">
-                  <playlists :playlists="data.playlists"> </playlists>
+                  <div class=" tw-pb-8">
+                    <playlists :playlists="data.playlists"> </playlists>
+                  </div>
                 </scroll>
               </v-window-item>
 
               <v-window-item class="h-100" value="100">
                 <scroll class="scroll tw-pt-1 tw-h-full">
-                  <Singerlist :singers="data.artists"></Singerlist>
+                  <div class=" tw-pb-8">
+                    <Singerlist :singers="data.artists"></Singerlist>
+                  </div>
                 </scroll>
               </v-window-item>
 

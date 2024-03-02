@@ -29,7 +29,7 @@ const gotoPlaylistDetailPage = (id) => {
       <span class=" tw-text-base tw-font-medium" @click="GotoRecommendedListPage">推荐歌单 &gt;</span>
     </div>
     <scrollY class="scroll tw-w-full">
-      <div class="tw-inline-block" @click="alert(1)">
+      <div class="tw-inline-block">
         <v-lazy transition="fade-transition">
           <div
             class="tw-flex"

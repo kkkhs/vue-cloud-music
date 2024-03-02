@@ -5,7 +5,7 @@ import TopList from './topList/TopList.vue'
 import { useWindowStateStore } from '@/store/windowState';
 
 const windowState = useWindowStateStore()
-console.log(windowState.state)
+// console.log(windowState.state)
 
 
 </script>

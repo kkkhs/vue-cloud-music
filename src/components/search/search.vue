@@ -6,7 +6,6 @@ import { useAsync } from '@/use/useAsync';
 import { fetchSearchHotData } from '@/api/search'
 import scroll from '../scroll/scroll.vue';
 import { useSearchStateStore } from '@/store/searchState';
-import { cnPOSTag } from 'segmentit';
 
 const searchState = useSearchStateStore()
 const query = computed(() => searchState.state.query)

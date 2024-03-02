@@ -1,4 +1,9 @@
 <script setup>
+import { brightenKeyword } from '@/utils/highlightKeyword'
+import { useSearchStateStore } from '@/store/searchState';
+
+const searchState = useSearchStateStore()
+const query = computed(() => searchState.state.query)
 
 const props = defineProps({
   playlists: {
@@ -19,7 +24,7 @@ const gotoPlaylistDetailPage = (id) => {
 </script>
 
 <template>
-  <div class=" tw-pb-24">
+  <div class="">
     <div 
       class="tw-flex tw-mr-2"
       v-for="list in playlists"
@@ -31,7 +36,10 @@ const gotoPlaylistDetailPage = (id) => {
         :src="list.coverImgUrl"
       >
       <div class=" tw-flex tw-flex-col tw-py-1 tw-ml-3">
-        <div class=" tw-text-base tw-my-2 tw-line-clamp-1 tw-font-medium">{{ list.name }}</div>
+        <div 
+          class=" tw-text-base tw-my-2 tw-line-clamp-1 tw-font-medium"
+          v-html="brightenKeyword(list.name, query)"
+        ></div>
         <div class="tw-line-clamp-1">
           <span 
             v-show="list.score !== null"
@@ -54,8 +62,8 @@ const gotoPlaylistDetailPage = (id) => {
           v-else
           v-if="list.recommendText !== null"
           class="tw-opacity-80"
+          v-html="brightenKeyword(list.recommendText, query)"
         >
-          {{ list.recommendText }}
         </div>
       </div>
     </div>

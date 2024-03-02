@@ -209,12 +209,6 @@ const end = () => {
   }
 }
 
-const test = () => {
-  console.log(currentLyric.value)
-  console.log(currentLineNum.value)
-  console.log(currentTime.value)
-}
-
 defineExpose({ changeBottom })
 </script>
 
@@ -255,7 +249,6 @@ defineExpose({ changeBottom })
           </div>
           <div ref="top">
             <h1 
-            @click="test"
               class="tw-text-center tw-text-xl tw-font-normal tw-mt-2 tw-max-w-72 tw-line-clamp-1 tw-mx-auto"
             >{{ currentSong?.name }}</h1>
             <h2 

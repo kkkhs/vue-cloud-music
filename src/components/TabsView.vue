@@ -33,7 +33,6 @@ const route = useRoute()
 const router = useRouter()
 const active = ref(route.name)
 watch(active, (nv) =>{
-  console.log(nv)
   router.push({name: nv})
 })
 </script>

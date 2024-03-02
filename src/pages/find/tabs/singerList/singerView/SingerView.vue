@@ -66,7 +66,6 @@ const TopStyle = () => {
 }
 
 const scrollStyle = () => {
-  console.log(imgHeight)
   return{
     top: `${imgHeight}px`
   }
@@ -125,7 +124,7 @@ const onScroll = (pos) => {
               <div class="tw-text-base">{{ followData?.fansCnt }} <span class="tw-text-sm">粉丝</span></div>
               <div class=" tw-max-w-72 tw-truncate ">{{ data?.identify?.imageDesc }}</div>
             </div>      
-            <div class=" tw-bg-white tw-pr-2 tw-pl-4 tw-rounded-2xl">
+            <div class=" tw-bg-white tw-pr-2 tw-pl-4 tw-rounded-2xl tw-pb-64">
               <MusicList :songs="TopSong"></MusicList>
             </div>
           </div>

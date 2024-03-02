@@ -10,6 +10,14 @@ const props = defineProps({
   hasIndex: {
     type: Boolean,
     default: true
+  },
+  isHightLight: {
+    type: Boolean,
+    default: false
+  },
+  keyWord: {
+    type: String,
+    default: ''
   }
 })
 
@@ -46,7 +54,6 @@ const current = (song) => {
       <span>播放全部</span>
     </div>
     <div
-      class="tw-pb-24"
       :class=" {'tw-pb-12': playList.length }"
     >
       <div
@@ -54,7 +61,10 @@ const current = (song) => {
         :key="song.id"
         :class=" {'tw-text-red-500' : current(song) }"
       >
-        <SongView :song="song" :index="index + 1" :hasIndex="hasIndex"  @select="selectItem"></SongView>
+        <SongView 
+        :song="song" :index="index + 1" :hasIndex="hasIndex"   :isHightLight="true" :keyWord="keyWord"
+        @select="selectItem"
+        ></SongView>
       </div>
     </div>
   </div>

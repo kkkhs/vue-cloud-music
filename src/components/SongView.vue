@@ -4,6 +4,8 @@
 
 <script setup>
 import { formatArtistName } from '@/utils/formatArtistsName'
+import { brightenKeyword } from '@/utils/highlightKeyword'
+
 const { song, index } = defineProps({
   song: {
     type: Object, // 接收的参数类型
@@ -16,6 +18,14 @@ const { song, index } = defineProps({
   hasIndex: {
     type: Boolean,
     default: true
+  },
+  isHightLight: {
+    type: Boolean,
+    default: false
+  },
+  keyWord: {
+    type: String,
+    default: ''
   }
 })
 //派发事件
@@ -40,9 +50,15 @@ const selectItem = (song, index) => {
     <div 
       class="tw-flex-1"
     >
-      <div class="tw-line-clamp-1 tw-max-w-64">{{ song.name }}</div>
+      <div 
+        v-if="isHightLight" 
+        class="tw-line-clamp-1 tw-max-w-64"
+        v-html="brightenKeyword(song.name, keyWord)"
+      >
+      </div>
+      <div v-else class="tw-line-clamp-1 tw-max-w-64">{{ song.name }}</div>
       <div class="tw-line-clamp-1 tw-max-w-60">
-        <span v-if="song.fee == 1" class=" tw-text-red-400 tw-border-solid tw-border tw-text-xs tw-rounded tw-px-0.5 tw-mr-1">VIP</span>
+        <span v-show="song.fee == 1" class=" tw-text-red-400 tw-border-solid tw-border tw-text-xs tw-rounded tw-px-0.5 tw-mr-1">VIP</span>
         <span
           class="tw-text-sm tw-opacity-70 "  
         >{{ formatArtistName(song.ar) }} - {{ song.al.name }}
