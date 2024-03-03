@@ -27,14 +27,15 @@ export default function useScrollY(wrapperRef, options, emit) {
     scroll.value.destroy()
   })
 
-  onActivated(() => {
-    scroll.value.enable()
-    scroll.value.refresh()
-  })
+  // onActivated(() => {
+  //   console.log(scroll.value)
+  //   scroll.value.enable()
+  //   scroll.value.refresh()
+  // })
 
-  onDeactivated(() => {
-    scroll.value.disable()
-  })
+  // onDeactivated(() => {
+  //   scroll.value.disable()
+  // })
 
   return scroll
 }

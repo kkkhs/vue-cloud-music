@@ -55,7 +55,7 @@ const handleFocus = () => {
       size="30" icon="mdi-arrow-left"
       @click="onClickLeft"
     ></v-icon>
-    <div class="tw-flex tw-flex-1 tw-bg-white tw-mx-2 tw-h-8 tw-items-center tw-rounded-2xl tw-px-3">
+    <div class="tw-flex tw-flex-1 tw-bg-white tw-mx-2 tw-h-8 tw-items-center tw-rounded-2xl tw-px-3 tw-border-solid tw-border-[1px] tw-border-slate-300">
       <v-icon size="23" icon="mdi-magnify" class="tw-opacity-60 tw-mr-2"></v-icon>
       <input 
         class="tw-flex-1 tw-box-border tw-outline-none tw-text-lg" 

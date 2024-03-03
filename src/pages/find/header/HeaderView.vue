@@ -6,7 +6,6 @@ const gotoSearch = () => {
     name: 'search'
   })
 }
-
 </script>
 
 <template>

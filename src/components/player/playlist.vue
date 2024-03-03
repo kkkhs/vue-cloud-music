@@ -129,14 +129,14 @@ defineExpose({ show })
                 >
                   <div class=" tw-flex tw-justify-center">
                     <v-btn
-                      class="tw-flex-1"
-                      text="清空"
-                      @click="clear"
-                    ></v-btn>
-                    <v-btn
                       class=" tw-flex-1"
                       text="取消"
                       @click="dialog = false"
+                    ></v-btn>
+                    <v-btn
+                      class="tw-flex-1"
+                      text="清空"
+                      @click="clear"
                     ></v-btn>
                   </div>
                 </v-card>
@@ -151,6 +151,7 @@ defineExpose({ show })
             <transition-group
               ref="listRef"
               name="list"
+              appear
               tag="ul"
             >
               <li

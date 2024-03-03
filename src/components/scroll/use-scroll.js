@@ -25,14 +25,17 @@ export default function useScroll(wrapperRef, options, emit) {
     scroll.value.destroy()
   })
 
-  onActivated(() => {
-    scroll.value.enable()
-    scroll.value.refresh()
-  })
-
-  onDeactivated(() => {
-    scroll.value.disable()
-  })
+  // // 使用keep-alive组件添加
+  // onActivated(() => {
+  //   console.log(scroll.value)
+  //   scroll.value.enable()
+  //   scroll.value.refresh()
+  // })
+  
+  // // 使用keep-alive组件添加
+  // onDeactivated(() => {
+  //   scroll.value.disable()
+  // })
 
   return scroll
 }

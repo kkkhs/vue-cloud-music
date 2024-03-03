@@ -57,7 +57,7 @@ watch(active, (nv) =>{
       >
         <v-icon 
           aria-hidden="false"
-          size="30"
+          size="26"
           rounded="xl"
         >{{ v.icon }}</v-icon>
         <span>{{ v.text }}</span>

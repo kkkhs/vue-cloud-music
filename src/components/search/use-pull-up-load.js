@@ -64,14 +64,14 @@ export default function usePullUpLoad(requestData, preventPullUpLoad) {
     scroll.value.destroy()
   })
 
-  onActivated(() => {
-    scroll.value.enable()
-    scroll.value.refresh()
-  })
+  // onActivated(() => {
+  //   scroll.value.enable()
+  //   scroll.value.refresh()
+  // })
 
-  onDeactivated(() => {
-    scroll.value.disable()
-  })
+  // onDeactivated(() => {
+  //   scroll.value.disable()
+  // })
 
   return {
     scroll,

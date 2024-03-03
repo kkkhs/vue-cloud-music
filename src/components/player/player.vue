@@ -15,6 +15,7 @@ import useCd from './use-cd'
 import useLyric from './use-lyric'
 import useMiddleInteractive from './use-middle-interactive';
 import useAnimation from './use-animation';
+import usePlayHistory from './use-play-history'
 
 const audioRef = ref(null)
 const songUrl = reactive({})
@@ -44,6 +45,7 @@ const { cdCls, cdWrapperRef, cdRef } = useCd()
 const { currentLyric, currentLineNum, lyricScrollRef, lyricListRef, pureMusicLyric, playingLyric, playLyric, stopLyric } = useLyric({ songReady, currentTime })
 const { currentShow, middleLStyle, middleRStyle, onMiddleTouchStart, onMiddleTouchMove, onMiddleTouchEnd } = useMiddleInteractive()
 const { enter, afterEnter, leave, afterLeave } = useAnimation(cdWrapperRef)
+const { savePlay } = usePlayHistory()
 
 // 根据不同的播放状态返回不同的icon
 const playIcon = computed(() => { 
@@ -168,6 +170,7 @@ const ready = () => {
   }
   songReady.value = true
   playLyric()
+  savePlay(currentSong.value)   // 保存最近播放
 }
 
 //播放出现问题

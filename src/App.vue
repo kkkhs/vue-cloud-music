@@ -1,8 +1,15 @@
 <template>
   <v-app class="tw-h-screen">
     <v-main class="tw-h-screen">
-      <router-view 
-      />
+      <router-view
+        v-slot="{ Component }"
+      >
+        <transition appear name="slide">
+          <keep-alive>
+            <component :is="Component"/>
+          </keep-alive>
+        </transition>
+      </router-view>
       <Player ref="playerRef"/>
     </v-main>
   </v-app>
@@ -26,9 +33,24 @@ watch(route, (nr) => {
   }
 })
 
-  //
+const viewStyle = computed(() => {
+  const bottom = playList.value.length ? '60px' : '0'
+  return {
+    bottom
+  }
+})
 </script>
 
-<style>
+<style scoped>
+
+.slide-enter-active, .slide-leave-active {
+  transition: all 0.3s
+}
+
+.slide-enter-from, .slide-leave-to {
+  transform: translate3d(100%, 0, 0);
+  opacity: 0;
+}
 
 </style>
+

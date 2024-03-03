@@ -68,7 +68,16 @@ export default function useMiniSlider(){
       slider.value.destroy()
     }
   })
+  // // 使用keep-alive组件添加
+  // onActivated(() => {
+  //   slider.value.enable()
+  //   slider.value.refresh()
+  // })
 
+  // // 使用keep-alive组件添加
+  // onDeactivated(() => {
+  //   slider.value.disable()
+  // })
   return{
     slider,
     sliderWrapperRef

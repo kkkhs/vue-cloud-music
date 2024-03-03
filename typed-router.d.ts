@@ -53,6 +53,7 @@ declare module 'vue-router/auto/routes' {
     '/find/tabs/singerList/singerView/SingerView': RouteRecordInfo<'/find/tabs/singerList/singerView/SingerView', '/find/tabs/singerList/singerView/SingerView', Record<never, never>, Record<never, never>>,
     '/find/tabs/topList/TopList': RouteRecordInfo<'/find/tabs/topList/TopList', '/find/tabs/topList/TopList', Record<never, never>, Record<never, never>>,
     '/follow/FollowView': RouteRecordInfo<'/follow/FollowView', '/follow/FollowView', Record<never, never>, Record<never, never>>,
+    '/my/MyFavorites': RouteRecordInfo<'/my/MyFavorites', '/my/MyFavorites', Record<never, never>, Record<never, never>>,
     '/my/MyView': RouteRecordInfo<'/my/MyView', '/my/MyView', Record<never, never>, Record<never, never>>,
     '/podcast/PodcastView': RouteRecordInfo<'/podcast/PodcastView', '/podcast/PodcastView', Record<never, never>, Record<never, never>>,
   }

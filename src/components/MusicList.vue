@@ -54,6 +54,7 @@ const current = (song) => {
       <span>播放全部</span>
     </div>
     <div
+      class="tw-min-h-80"
       :class=" {'tw-pb-12': playList.length }"
     >
       <div
@@ -62,7 +63,7 @@ const current = (song) => {
         :class=" {'tw-text-red-500' : current(song) }"
       >
         <SongView 
-        :song="song" :index="index + 1" :hasIndex="hasIndex"   :isHightLight="true" :keyWord="keyWord"
+        :song="song" :index="index + 1" :hasIndex="hasIndex" :isHightLight="true" :keyWord="keyWord"
         @select="selectItem"
         ></SongView>
       </div>

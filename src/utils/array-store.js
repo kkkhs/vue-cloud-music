@@ -43,5 +43,10 @@ export function remove(key, compare){
 // 初始加载的数据
 export function load(key){
   return storage.get(key, [])
-  
+}
+
+// 清空
+export function clear(key){
+  storage.remove(key)
+  return []
 }

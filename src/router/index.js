@@ -51,7 +51,15 @@ const router = createRouter({
       path: '/search',
       name: 'search',
       component: () => import('@/components/search/search.vue')
-    }
+    },{
+      path: '/playHistory',
+      name: 'playHistory',
+      component: () => import('@/components/player/PlayHistory.vue')
+    },{
+      path: '/myFavorites',
+      name: 'myFavorites',
+      component: () => import('@/pages/my/MyFavorites.vue')
+    },
   ]
 })
 
