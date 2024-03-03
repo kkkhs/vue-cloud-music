@@ -84,6 +84,32 @@ export const usePlayStateStore = defineStore('playState', () => {
     }
   }
 
+  // 添加歌曲
+  const addSong = (song) => {
+    const playlist = state.playList.slice()
+    const sequenceList = state.sequenceList.slice()
+    let currentIndex = state.currentIndex
+    const playIndex = findIndex(playlist, song)
+
+    if(playIndex > -1){
+      currentIndex = playIndex
+    }else {
+      playlist.push(song)
+      currentIndex = playlist.length - 1
+    }
+
+    const sequenceIndex = findIndex(sequenceList, song)
+    if(sequenceIndex === -1){
+      sequenceList.push(song)
+    }
+
+    state.sequenceList = sequenceList
+    state.playList = playlist
+    state.currentIndex = currentIndex
+    state.playing = true
+    state.fullScreen = true
+  }
+
   //清空歌曲列表
   const clearSongList = () => {
     state.sequenceList = []
@@ -105,6 +131,7 @@ export const usePlayStateStore = defineStore('playState', () => {
     currentSong,
     changeMode,
     removeSong,
+    addSong,
     clearSongList 
   }
 })

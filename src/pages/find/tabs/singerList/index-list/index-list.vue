@@ -1,7 +1,6 @@
 <script setup>
 import { defineProps } from 'vue'
 import useFixed from './use-fixed.js'
-import Singer from '@/components/Singer.vue'
 import { useRouter } from 'vue-router';
 import Scroll from '@/components/scroll/scroll.vue';
 import useShortcut from './use-shortcut'
@@ -47,17 +46,18 @@ const gotoDetail = (id) => {
           class="tw-min-h-5 tw-bg-slate-200 tw-text-lg tw-leading-8 tw-pl-4 tw-mb-3 tw-font-medium tw-rounded-b-2xl"
         >{{ group.title }}</h2>
         <ul
+          class=" "
           v-for="item in group.list"
           :key="item.id"
           @click="gotoDetail(item.id)"
         >
-          <li class="tw-list-none tw-flex tw-justify-start tw-pl-2 tw-pb-3 tw-items-center tw-min-h-12">
+          <li class="tw-list-none tw-flex tw-justify-start tw-pl-2 tw-pb-2 tw-pt-1 tw-items-center tw-h-16">
             <!-- <Singer :singer="item"></Singer> -->
             <img 
               class="tw-bg-cover tw-object-cover tw-h-14 tw-w-14 tw-rounded-full" 
               v-lazy="item.picUrl"
             >
-            <span class="tw-flex-1 tw-py-0 tw-ml-3 tw-text-sm">{{ item.name }}</span>
+            <span class="tw-flex-1 tw-flex tw-items-center tw-py-0 tw-ml-3 tw-text-sm tw-h-full tw-border-solid tw-border-t-0 tw-border-l-0 tw-border-r-0 tw-border-b-[1px] tw-border-slate-300">{{ item.name }}</span>
           </li>
         </ul>
       </li>

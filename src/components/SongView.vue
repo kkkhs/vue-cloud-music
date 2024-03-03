@@ -5,8 +5,11 @@
 <script setup>
 import { formatArtistName } from '@/utils/formatArtistsName'
 import { brightenKeyword } from '@/utils/highlightKeyword'
+import { usePlayStateStore } from '@/store/playState.js'
 
-const { song, index } = defineProps({
+const playState = usePlayStateStore()
+const showBottomSheet = ref(false)
+const props = defineProps({
   song: {
     type: Object, // 接收的参数类型
     default: {}, //默认值
@@ -33,6 +36,12 @@ const emit = defineEmits(['select'])
 const selectItem = (song, index) => {
   emit('select', { song, index })
   // console.log(currentSongId.value)
+}
+
+// 添加歌曲到播放列表
+const addToPlaylist = () => {
+  playState.addSong(props.song)
+  showBottomSheet.value = false
 }
 
 </script>
@@ -71,7 +80,48 @@ const selectItem = (song, index) => {
     </div>
     <div class="tw-opacity-35">
       <v-icon icon="mdi-music-circle-outline" size="30" class="tw-text-lg"></v-icon>
-      <v-icon icon="mdi-dots-vertical" class="tw-mr-2 tw-ml-3"></v-icon>
+      <v-icon
+        icon="mdi-dots-vertical" class="tw-mr-2 tw-ml-3"
+        @click.stop="showBottomSheet = !showBottomSheet"  
+      ></v-icon>
     </div>
+
+    <!-- 底部弹框 -->
+    <v-bottom-sheet v-model="showBottomSheet">
+      <v-card
+        height="300"
+        class="text-center rounded-t-xl py-3"
+      >
+        <div class=" tw-flex tw-mx-4 tw-items-center tw-mb-2">
+          <img 
+            class="tw-rounded-2xl tw-h-16 tw-w-16 tw-mr-3 tw-ml-2"
+            :src="song.al.picUrl">
+          <div class=" tw-flex-1">
+            <span class="tw-line-clamp-1 tw-text-left">歌曲： {{ song.name }}</span>
+            <div class="tw-line-clamp-1 tw-max-w-60 tw-text-left">
+              <span v-show="song.fee == 1" class=" tw-text-red-400 tw-border-solid tw-border tw-text-xs tw-rounded tw-px-0.5 tw-mr-1">VIP</span>
+              <span
+                class="tw-text-sm tw-opacity-70 "  
+              >{{ formatArtistName(song.ar) }}
+              </span>
+            </div>
+          </div>
+        </div>
+        <v-divider :thickness="1"></v-divider>
+
+        <ul class=" tw-text-left tw-list-none tw-px-4">
+          <li class=" tw-leading-10" 
+            @click="addToPlaylist"
+          >
+            <v-icon class="tw-text-red-500 tw-mr-3" icon="mdi-hamburger-plus"></v-icon> 
+            <span class="tw-text-sm">添加到播放列表</span>
+          </li>
+          <li class=" tw-leading-10">
+            <v-icon class="tw-text-red-500 tw-mr-3" icon=""></v-icon> 
+            <span class="tw-text-sm">更多功能待开发...</span>
+          </li>
+        </ul>
+      </v-card>
+    </v-bottom-sheet>
   </div>
 </template>

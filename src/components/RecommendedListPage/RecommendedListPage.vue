@@ -58,7 +58,7 @@ const gotoPlaylistDetailPage = (id) => {
                       :src="item.picUrl"
                       cover
                     />
-                    <span class="tw-h-9 tw-text-[13px] tw-line-clamp-2">{{ item.name }}</span>
+                    <span class="tw-text-[13px] tw-line-clamp-2">{{ item.name }}</span>
                   </div>
                 </div>
               </v-card>

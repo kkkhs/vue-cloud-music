@@ -93,7 +93,6 @@ defineExpose({ changeBottom })
                 class="tw-text-center tw-text-sm tw-leading-5 tw-font-normal tw-opacity-60"
               > -  {{ formatArtistName(song.ar) }}
               </span>
-              
             </p>
             
           </div>

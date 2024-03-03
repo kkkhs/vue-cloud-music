@@ -3,13 +3,19 @@ import { useAsync } from '@/use/useAsync';
 import { fetchSearchResultData } from '@/api/search';
 import { fetchSongDetailData } from '@/api/songDetail';
 import MusicList from '../MusicList.vue';
-import scroll from '../scroll/scroll.vue';
 import Playlists from '../Playlists.vue';
 import Singerlist from '../SingerList.vue';
+import usePullUpLoad from './use-pull-up-load';
 
 const loadingText = '正在载入...'
 const tab = ref('1')
+const offset = ref(0)
 const songs = ref([])
+const playlists = ref([])
+const artists = ref([])
+const hasMore = ref(false)
+const preventPullUpLoad = ref(false)
+
 const props = defineProps({
   query:{
     type: String,
@@ -17,9 +23,11 @@ const props = defineProps({
   }
 })
 
-const {data, pending, execute} = useAsync(() => fetchSearchResultData(props.query, tab.value)
-    .then(v => {
+// hooks
+const { rootRef, isPullUpLoad } = usePullUpLoad(searchMore, preventPullUpLoad)
 
+const {data, pending, execute} = useAsync(() => fetchSearchResultData(props.query, tab.value, offset.value)
+    .then(v => {
       //歌曲详情数据
       if(tab.value === '1'){
         let songIds = ''
@@ -34,7 +42,16 @@ const {data, pending, execute} = useAsync(() => fetchSearchResultData(props.quer
         useAsync(() => fetchSongDetailData(songIds).then(hv => {
           songs.value = hv.data.songs
         }))
+      }else if(tab.value === '1000'){
+        playlists.value = v.data.result.playlists
+      }else if(tab.value === '100') {
+        artists.value = v.data.result.artists
       }
+      
+      // 获取hasMore的值
+      hasMore.value = v.data.result.hasMore
+      // console.log(hasMore.value)
+
       return v.data.result
     })
 , {}, false)
@@ -46,10 +63,40 @@ onMounted(() => {
 
 watch(tab, (newTab) => {
   if(newTab) {
+    offset.value = 0    
     execute()
   }
 })
 
+async function searchMore() {
+  if(!hasMore.value){
+    return
+  }
+  offset.value ++
+  await fetchSearchResultData(props.query, tab.value, offset.value).then((res) => {
+    if(tab.value === '1'){
+      let songIds = ''
+        for (let index = 0; index < res.data.result.songs.length; index++) {
+          const id = res.data.result.songs[index].id + '';
+          if(index === 0){
+            songIds += id
+          }else{
+            songIds += ',' +id
+          }
+        }
+        useAsync(() => fetchSongDetailData(songIds).then(hv => {
+          songs.value = songs.value.concat(hv.data.songs) 
+        }))
+    } else if( tab.value === '1000'){
+      playlists.value =  playlists.value.concat(res.data.result.playlists)
+    } else if( tab.value === '100'){
+      artists.value = artists.value.concat(res.data.result.artists)
+    }
+
+    hasMore.value = res.data.result.hasMore
+    // console.log(hasMore.value)
+  })
+}    
 </script>
 
 <template>
@@ -75,27 +122,46 @@ watch(tab, (newTab) => {
           >
             <v-window class="h-100"  v-model="tab">
               <v-window-item class="h-100" value="1">
-                <scroll class="scroll tw-pt-1 tw-h-full">
+                <div ref="rootRef" class="scroll MusicList tw-pt-1 tw-h-full">
                   <div class=" tw-pb-8">
-                    <MusicList :songs="songs" :has-index="false" :isHightLight="true" :keyWord="query"></MusicList>
+                    <MusicList :songs="songs" :has-index="false" :isHightLight="true" :keyWord="query"
+                    ></MusicList>
+                    <div 
+                      class="tw-w-full tw-h-8 tw-text-black tw-text-center tw-text-base" 
+                      v-if="isPullUpLoad && hasMore"
+                    >
+                      正在载入...
+                    </div>
                   </div>
-                </scroll>
+                </div>
               </v-window-item>
 
               <v-window-item class="h-100" value="1000">
-                <scroll class="scroll tw-pt-1 tw-h-full">
-                  <div class=" tw-pb-8">
-                    <playlists :playlists="data.playlists"> </playlists>
+                <div ref="rootRef" class="scroll playlists tw-pt-1 tw-h-full">
+                  <div class="tw-pb-8">
+                    <playlists :playlists="playlists"> </playlists>
+                    <div 
+                      class="tw-w-full tw-h-8 tw-text-black tw-text-center tw-text-base" 
+                      v-show="isPullUpLoad && hasMore"
+                    >
+                      正在载入...
+                    </div>
                   </div>
-                </scroll>
+                </div>
               </v-window-item>
 
               <v-window-item class="h-100" value="100">
-                <scroll class="scroll tw-pt-1 tw-h-full">
+                <div ref="rootRef" class="scroll Singerlist tw-pt-1 tw-h-full">
                   <div class=" tw-pb-8">
-                    <Singerlist :singers="data.artists"></Singerlist>
+                    <Singerlist :singers="artists"></Singerlist>
+                    <div 
+                      class="tw-w-full tw-h-8 tw-text-black tw-text-center tw-text-base" 
+                      v-show="isPullUpLoad && hasMore"
+                    >
+                      正在载入...
+                    </div>
                   </div>
-                </scroll>
+                </div>
               </v-window-item>
 
               <v-window-item value="1002">

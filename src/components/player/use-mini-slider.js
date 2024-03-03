@@ -37,6 +37,7 @@ export default function useMiniSlider(){
             }
           })
           sliderVal.on('slidePageChanged', (page) => {
+            // console.log(page)
             playState.state.currentIndex = page.pageX  // 切歌联动
           })
 
@@ -47,11 +48,14 @@ export default function useMiniSlider(){
       }
     })
     watch(currentIndex, (newIndex) => { //滚动页面
+      // console.log('newIndex')
+
       if(sliderVal && sliderShow.value){
         sliderVal.goToPage(newIndex, 0, 0)
       }
     })
     watch(playList, async (newList) => {
+      // console.log('newList')
       if(sliderVal && sliderShow.value && newList.length ){
         await nextTick()
         sliderVal.refresh()

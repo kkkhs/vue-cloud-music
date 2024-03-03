@@ -27,25 +27,25 @@ const gotoSingerDetail = (id) => {
   <div class="tw-flex tw-flex-col">
     <div 
       v-for="singer in singers"
-      :key="singer.id"
+      :key="singer?.id"
       class="tw-flex tw-items-center tw-my-2"
-      @click="gotoSingerDetail(singer.id)"
+      @click="gotoSingerDetail(singer?.id)"
     >
       <div>
-        <img class=" tw-h-14 tw-w-14 tw-rounded-full tw-mr-2" v-lazy="singer.picUrl">
+        <img class="tw-h-14 tw-w-14 tw-rounded-full tw-mr-2" v-lazy="singer?.picUrl">
       </div>
       <div class=" tw-w-full tw-flex tw-flex-1 tw-justify-between tw-items-center tw-border-solid tw-border-t-0 tw-border-l-0 tw-border-r-0 tw-border-b-[1px] tw-border-slate-200 tw-pb-1">
         <div>
           <span 
             class="tw-text-base tw-font-medium tw-mb-1 tw-line-clamp-1"
-            v-html="brightenKeyword(singer.name, query)"
+            v-html="brightenKeyword(singer?.name, query)"
           >
           </span>
           <span 
-            v-if="singer.fansGroup !== null"
+            v-if="singer?.fansGroup !== null"
             class=" tw-text-sky-600"
           > 
-            {{ singer.fansGroup.text }} >
+            {{ singer?.fansGroup.text }} >
           </span>
         </div>
         <div>
