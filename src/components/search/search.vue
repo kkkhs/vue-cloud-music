@@ -38,7 +38,7 @@ const addQuery = (s) => {
     </div>
     <div class="search-content tw-h-full" v-show="!query">
       <scroll class="scroll tw-h-full">
-        <div class="tw-h-fit tw-pt-12 ">
+        <div class="tw-h-fit tw-pt-12 tw-pb-2 ">
           <transition-group appear tag="">
             <div 
               key="'searchHistory'"
@@ -49,7 +49,7 @@ const addQuery = (s) => {
             </div>
             <div
               key="'hot'"
-              class="hot tw-bg-white tw-rounded-2xl tw-mx-5 tw-px-4 tw-py-4 tw-mt-4"
+              class="hot tw-bg-white tw-rounded-2xl tw-mx-5 tw-px-4 tw-pb-1 tw-pt-4 tw-mt-4"
             >
               <div class=" tw-pb-3 tw-border-b-[1px] tw-border-t-0 tw-border-l-0 tw-border-r-0 tw-border-solid tw-border-b-slate-200">
                 <span class=" tw-font-bold tw-text-xl"> 热搜榜 </span>

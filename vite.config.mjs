@@ -69,6 +69,16 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },
+    },
+    build: {
+      // 设置生产环境下的代理配置
+      proxy: {
+        '/api': {
+          target: 'http://121.40.200.148:3000',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, ''),
+        },
+      },
     }
   }
 })

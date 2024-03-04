@@ -29,7 +29,7 @@ router.push({
 </script>
 
 <template>
-  <div class=" tw-w-full tw-bg-slate-100 tw-px-4" v-loading:[loadingText]="pending">
+  <div class=" tw-w-full tw-bg-slate-100 tw-px-4 tw-pb-1" v-loading:[loadingText]="pending">
     <div class=" tw-py-3 tw-flex tw-items-center">
       <v-icon icon="mdi-music-circle" size="32" color="red-darken-1"></v-icon>
       <span class=" tw-text-lg tw-ml-2">官方榜</span>

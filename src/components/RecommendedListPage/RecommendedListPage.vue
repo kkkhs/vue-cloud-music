@@ -44,7 +44,7 @@ const gotoPlaylistDetailPage = (id) => {
                 variant="flat"
               >
                 <div
-                  class="tw-flex tw-flex-wrap tw-mb-14"
+                  class="tw-flex tw-flex-wrap tw-mb-10"
                 >
                   <div
                     class="tw-h-50 tw-w-28 tw-flex tw-flex-col tw-mr-2 tw-justify-center tw-pb-5"
@@ -58,7 +58,7 @@ const gotoPlaylistDetailPage = (id) => {
                       :src="item.picUrl"
                       cover
                     />
-                    <span class="tw-text-[13px] tw-line-clamp-2">{{ item.name }}</span>
+                    <span class=" tw-h-full tw-text-[13px] tw-line-clamp-2">{{ item.name }}</span>
                   </div>
                 </div>
               </v-card>

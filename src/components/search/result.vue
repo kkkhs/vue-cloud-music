@@ -100,7 +100,7 @@ async function searchMore() {
 </script>
 
 <template>
-  <div class=" tw-h-full" v-loading:[loadingText]="pending">
+  <div class="tw-h-full" v-loading:[loadingText]="pending">
     <v-card class="h-100">
       <div class="tw-z-50 tw-bg-white">
         <v-tabs
