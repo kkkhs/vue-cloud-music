@@ -18,11 +18,17 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/find'
+      redirect: '/find',
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('@/pages/login/LoginView.vue')
     },
     {
       path: '/tabs',
       name: 'tabs',
+      meta: { requiresAuth: true }, // 添加 meta 字段表示该页面需要登录认证，
       component: TabsView,
       children: [
         { name: 'find', path: '/find', component: FindView },
@@ -62,5 +68,37 @@ const router = createRouter({
     },
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  // 检查页面是否需要登录认证
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // 如果用户未登录，则跳转到登录页
+    if (!isLoggedIn()) {
+      next('/login');
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
+
+// 模拟检查用户是否已经登录的函数
+function isLoggedIn() {
+  // 这里可以根据实际情况检查用户的登录状态，例如检查 localStorage 中是否有登录信息等
+  return checkCookie(); // 返回 true 表示用户已经登录
+}
+
+// 检查页面的 cookie
+function checkCookie() {
+  // 获取当前页面的所有 cookie
+  const cookies = document.cookie;
+  
+  if (!cookies) {
+    return false;
+  }
+  
+  return true;
+}
 
 export default router
