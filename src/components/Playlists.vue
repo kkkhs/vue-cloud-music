@@ -43,7 +43,7 @@ const gotoPlaylistDetailPage = (id) => {
         <div class="tw-line-clamp-1">
           <span 
             v-show="list?.score !== null"
-            class=" tw-inline-block tw-text-red-500 tw-text-center tw-w-8 tw-border-solid tw-border-[1px]  tw-rounded tw-text-xs tw-font-medium tw-border-red-300 tw-leading-[14px] tw-mr-1"
+            class=" tw-inline-block tw-text-red-500 tw-text-center tw-w-fit tw-border-solid tw-border-[1px]  tw-rounded tw-text-xs tw-font-medium tw-border-red-300 tw-leading-[14px] tw-mr-1"
           >{{ list?.score }}分
           </span>
           <span

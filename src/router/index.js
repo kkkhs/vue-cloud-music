@@ -5,7 +5,7 @@
  */
 
 // Composables
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import TabsView from '@/components/TabsView.vue'
 import FindView from '@/pages/find/FindView.vue'
 import PodcastView from '@/pages/podcast/PodcastView.vue'
@@ -14,7 +14,7 @@ import FollowView from '@/pages/follow/FollowView.vue'
 import CommunityView from '@/pages/community/CommunityView.vue'
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes: [
     {
       path: '/',

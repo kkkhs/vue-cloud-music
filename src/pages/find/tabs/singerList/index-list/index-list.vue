@@ -55,7 +55,7 @@ const gotoDetail = (id) => {
             <!-- <Singer :singer="item"></Singer> -->
             <img 
               class="tw-bg-cover tw-object-cover tw-h-14 tw-w-14 tw-rounded-full" 
-              v-lazy="item.picUrl"
+              v-lazy="item.img1v1Url"
             >
             <span class="tw-flex-1 tw-flex tw-items-center tw-py-0 tw-ml-3 tw-text-sm tw-h-full tw-border-solid tw-border-t-0 tw-border-l-0 tw-border-r-0 tw-border-b-[1px] tw-border-slate-300">{{ item.name }}</span>
           </li>
