@@ -30,6 +30,7 @@ declare module 'vue' {
     SongView: typeof import('./src/components/SongView.vue')['default']
     Suggest: typeof import('./src/components/search/suggest.vue')['default']
     TabsView: typeof import('./src/components/TabsView.vue')['default']
+    Toast: typeof import('./src/components/toast/Toast.vue')['default']
     TopList: typeof import('./src/components/TopList.vue')['default']
   }
 }

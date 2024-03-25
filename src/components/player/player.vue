@@ -239,10 +239,6 @@ defineExpose({ changeBottom })
               v-if="currentSong.al" 
               class=" tw-w-full tw-h-full" :src="currentSong?.al?.picUrl"
             >
-            <img
-              v-if="currentSong.al" 
-              class=" tw-w-full tw-h-full" :src="currentSong?.al?.picUrl"
-            >
           </div>
           <div
             @click="playState.state.fullScreen = !playState.state.fullScreen" 

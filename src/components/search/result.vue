@@ -67,36 +67,6 @@ watch(tab, (newTab) => {
     execute()
   }
 })
-
-async function searchMore() {
-  if(!hasMore.value){
-    return
-  }
-  offset.value ++
-  await fetchSearchResultData(props.query, tab.value, offset.value).then((res) => {
-    if(tab.value === '1'){
-      let songIds = ''
-        for (let index = 0; index < res.data.result.songs.length; index++) {
-          const id = res.data.result.songs[index].id + '';
-          if(index === 0){
-            songIds += id
-          }else{
-            songIds += ',' +id
-          }
-        }
-        useAsync(() => fetchSongDetailData(songIds).then(hv => {
-          songs.value = songs.value.concat(hv.data.songs) 
-        }))
-    } else if( tab.value === '1000'){
-      playlists.value =  playlists.value.concat(res.data.result.playlists)
-    } else if( tab.value === '100'){
-      artists.value = artists.value.concat(res.data.result.artists)
-    }
-
-    hasMore.value = res.data.result.hasMore
-    // console.log(hasMore.value)
-  })
-}    
 </script>
 
 <template>

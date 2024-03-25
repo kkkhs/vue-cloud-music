@@ -1,7 +1,6 @@
 /*
     处理异步操作的简单的 Vue 3 Composition API 自定义 Hook
 */
-
 import { ref } from 'vue';
 
 export function useAsync(asyncFn, initValue, immediate = true) {

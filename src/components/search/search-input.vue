@@ -52,7 +52,7 @@ const handleFocus = () => {
 <template>
   <div class=" tw-flex tw-h-full tw-items-center tw-px-3">
     <v-icon
-      size="30" icon="mdi-arrow-left"
+      size="30" icon="mdi-arrow-left" 
       @click="onClickLeft"
     ></v-icon>
     <div class="tw-flex tw-flex-1 tw-bg-white tw-mx-2 tw-h-8 tw-items-center tw-rounded-2xl tw-px-3 tw-border-solid tw-border-[1px] tw-border-slate-300">
